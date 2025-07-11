@@ -525,15 +525,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$query = "SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
 					         p.nom_pla as plantel_principal,
 					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
 					         CASE 
 					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
-					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
-					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
-					             ELSE 'activo'
-					         END as semaforo_sesion
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
 					  FROM ejecutivo e 
 					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
 					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 $condicion_fecha
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
 					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
 					  ORDER BY e.eli_eje DESC, e.nom_eje ASC";
 			
@@ -543,8 +549,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$datos = ejecutarConsulta($query, $connection);
 
 			if($datos !== false) {
-				// Ahora calcular los conteos recursivos
+				// Procesar los datos para estructurar mejor los planteles asociados
 				foreach($datos as &$ejecutivo) {
+					$ejecutivo['planteles_asociados_array'] = [];
+					if($ejecutivo['planteles_asociados']) {
+						$planteles = explode('|', $ejecutivo['planteles_asociados']);
+						foreach($planteles as $plantel) {
+							$partes = explode(':', $plantel);
+							if(count($partes) == 2) {
+								$ejecutivo['planteles_asociados_array'][] = [
+									'id_pla' => $partes[0],
+									'nom_pla' => $partes[1]
+								];
+							}
+						}
+					}
+					// Calcular los conteos recursivos
 					$ejecutivo['citas_recursivas'] = calcularCitasRecursivas($connection, $ejecutivo['id_eje'], $fecha_inicio, $fecha_fin);
 				}
 				
@@ -554,6 +574,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$error = mysqli_error($connection);
 				file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] Error MySQL ejecutivos con citas: ' . $error . "\n", FILE_APPEND);
 				echo respuestaError('Error al consultar ejecutivos con citas: ' . $error . ' Query: ' . $query);
+			}
+		break;
+
+		case 'obtener_citas_totales_por_plantel':
+			$id_pla = isset($_POST['id_pla']) ? intval($_POST['id_pla']) : null;
+			if(!$id_pla) {
+				echo respuestaError('ID del plantel es requerido');
+				break;
+			}
+			
+			// Obtener fechas de filtro si se proporcionan
+			$fecha_inicio = isset($_POST['fecha_inicio']) ? escape($_POST['fecha_inicio'], $connection) : null;
+			$fecha_fin = isset($_POST['fecha_fin']) ? escape($_POST['fecha_fin'], $connection) : null;
+			
+			// Construir condición de fecha
+			$condicion_fecha = '';
+			if ($fecha_inicio && $fecha_fin) {
+				$condicion_fecha = "AND c.cit_cit BETWEEN '$fecha_inicio' AND '$fecha_fin'";
+			} elseif ($fecha_inicio) {
+				$condicion_fecha = "AND c.cit_cit >= '$fecha_inicio'";
+			} elseif ($fecha_fin) {
+				$condicion_fecha = "AND c.cit_cit <= '$fecha_fin'";
+			}
+			
+			// Obtener total de citas del plantel
+			$query = "SELECT COUNT(*) as total_citas
+					  FROM cita c 
+					  LEFT JOIN ejecutivo e ON e.id_eje = c.id_eje2 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  WHERE p.id_pla = $id_pla AND c.eli_cit = 1 $condicion_fecha";
+			
+			$datos = ejecutarConsulta($query, $connection);
+
+			if($datos !== false) {
+				$total_citas_por_plantel = $datos[0]['total_citas'];
+				echo respuestaExito(['total_citas' => $total_citas_por_plantel], 'Total de citas obtenidas correctamente');
+			} else {
+				$error = mysqli_error($connection);
+				echo respuestaError('Error al consultar total de citas: ' . $error . ' Query: ' . $query);
 			}
 		break;
 

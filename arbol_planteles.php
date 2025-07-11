@@ -562,7 +562,7 @@
         
         /* Badge para citas de plantel (azul) */
         .badge-citas-plantel {
-            background-color: #007bff;
+            background-color: #6f42c1;
             color: #ffffff;
             margin-left: 5px;
             font-size: 0.75em;
@@ -574,9 +574,9 @@
         }
         
         .badge-citas-plantel:hover {
-            background-color: #0056b3;
+            background-color: #563d7c;
             transform: scale(1.05);
-            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+            box-shadow: 0 2px 4px rgba(111, 66, 193, 0.3);
         }
         
         /* Contenedor para los badges de citas */
@@ -857,23 +857,16 @@
             var html = '';
             
             planteles.forEach(function(plantel) {
-                // Calcular conteo de citas por plantel - P18
+                // Calcular conteo de ejecutivos por plantel
                 var ejecutivosPlantel = ejecutivos.filter(ej => ej.id_pla == plantel.id_pla);
-                var citasTotalesPlantel = ejecutivosPlantel.reduce(function(total, ej) {
-                    return total + (ej.citas_recursivas || 0);
-                }, 0);
-                
-                var badgeCitasPlantel = citasTotalesPlantel > 0 ? 
-                    `<span class="badge badge-citas-plantel ml-2" onclick="verDetallesCitasPlantel(${plantel.id_pla})" title="Citas totales del plantel: ${citasTotalesPlantel}">${citasTotalesPlantel}</span>` : 
-                    '';
                 
                 html += `
                     <div class="col-md-4">
                         <div class="plantel-container" data-plantel-id="${plantel.id_pla}">
                             <div class="plantel-header">
-                                <i class="fas fa-building"></i> ${plantel.nom_pla}
+                                <i class="fas fa-building"></i> ${plantel.nom_pla} 
                                 <div class="badge badge-light" id="count-plantel-${plantel.id_pla}">${ejecutivosPlantel.length}</div>
-                                ${badgeCitasPlantel}
+                                <span class="badge badge-citas-plantel ml-2" id="badge-citas-plantel-${plantel.id_pla}" onclick="verDetallesCitasPlantel(${plantel.id_pla})" title="Cargando citas..." style="display: none;">0</span>
                             </div>
                             <div class="plantel-tree" id="jstree-plantel-${plantel.id_pla}"></div>
                         </div>
@@ -882,6 +875,56 @@
             });
             
             $('#planteles-container').html(html);
+            
+            // Cargar conteo de citas por plantel de forma asíncrona
+            cargarCitasPorPlantel();
+        }
+        
+        function cargarCitasPorPlantel() {
+            // Obtener fechas de filtro si existen
+            var fechaInicio = $('#fechaInicio').val();
+            var fechaFin = $('#fechaFin').val();
+            
+            planteles.forEach(function(plantel) {
+                var datosEnvio = { 
+                    action: 'obtener_citas_totales_por_plantel',
+                    id_pla: plantel.id_pla
+                };
+                
+                // Agregar filtros de fecha si están definidos
+                if (fechaInicio) {
+                    datosEnvio.fecha_inicio = fechaInicio;
+                }
+                if (fechaFin) {
+                    datosEnvio.fecha_fin = fechaFin;
+                }
+                
+                $.ajax({
+                    url: 'server/controlador_ejecutivos.php',
+                    type: 'POST',
+                    data: datosEnvio,
+                    dataType: 'json',
+                    success: function(response) {
+                        if(response.success) {
+                            var totalCitas = response.data.total_citas;
+                            var badgeElement = $('#badge-citas-plantel-' + plantel.id_pla);
+                            
+                            if(totalCitas > 0) {
+                                badgeElement.text(totalCitas + (totalCitas >= 2 ? ' citas' : ' cita'))
+                                .attr('title', 'Citas totales del plantel: ' + totalCitas)
+                                .show();
+                            } else {
+                                badgeElement.hide();
+                            }
+                        } else {
+                            console.error('Error al obtener citas del plantel', plantel.id_pla, ':', response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error AJAX citas plantel', plantel.id_pla, ':', error);
+                    }
+                });
+            });
         }
         
         function generarArbolesPorPlantel() {
@@ -1084,6 +1127,12 @@
                 var semaforoHtml = '';
                 var tooltipText = '';
                 
+                console.log('  - Datos semáforo ejecutivo', ejecutivo.nom_eje, ':', {
+                    semaforo_sesion: ejecutivo.semaforo_sesion,
+                    dias_desde_ultima_sesion: ejecutivo.dias_desde_ultima_sesion,
+                    ult_eje: ejecutivo.ult_eje
+                });
+                
                 if (ejecutivo.semaforo_sesion) {
                     var colorSemaforo = ejecutivo.semaforo_sesion;
                     
@@ -1113,6 +1162,9 @@
                     }
                     
                     semaforoHtml = '<span class="semaforo-sesion ' + colorSemaforo + '" title="' + tooltipText + '" data-toggle="tooltip"></span>';
+                    console.log('  - Semáforo generado:', colorSemaforo, 'HTML:', semaforoHtml);
+                } else {
+                    console.warn('  - No hay datos de semáforo para ejecutivo', ejecutivo.nom_eje);
                 }
                 
                 // Generar emojis de planteles asociados
@@ -1625,7 +1677,9 @@
         }
         
         function recargarTodos() {
-            cargarEjecutivos();
+            cargarEjecutivos().then(function() {
+                cargarCitasPorPlantel(); // Actualizar conteo de citas por plantel
+            });
         }
         
         // =====================================
@@ -1927,6 +1981,7 @@
             cargarEjecutivos().then(function() {
                 generarArbolesPorPlantel();
                 actualizarEstadisticas();
+                cargarCitasPorPlantel(); // Actualizar conteo de citas por plantel
                 console.log('Filtro de fechas aplicado correctamente');
             });
         }
@@ -1940,6 +1995,7 @@
             cargarEjecutivos().then(function() {
                 generarArbolesPorPlantel();
                 actualizarEstadisticas();
+                cargarCitasPorPlantel(); // Actualizar conteo de citas por plantel
                 console.log('Filtro de fechas limpiado');
             });
         }

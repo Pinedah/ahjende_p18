@@ -1,552 +1,116 @@
-[2025-07-11 19:26:05] REQUEST recibido: Array
+[2025-07-11 20:42:09] REQUEST recibido: Array
 (
     [action] => obtener_estructura_tabla
 )
 
-[2025-07-11 19:26:05] REQUEST recibido: Array
+[2025-07-11 20:42:09] REQUEST recibido: Array
 (
     [action] => obtener_ejecutivos
 )
 
-[2025-07-11 19:26:05] REQUEST recibido: Array
+[2025-07-11 20:42:09] REQUEST recibido: Array
 (
     [action] => obtener_citas
     [fecha_filtro] => 2025-07-11
 )
 
-[2025-07-11 19:26:11] REQUEST recibido: Array
+[2025-07-11 20:42:20] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-11 20:42:20] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-11 20:42:20] REQUEST recibido: Array
 (
     [action] => obtener_citas
-    [fecha_filtro] => 2025-07-12
+    [fecha_filtro] => 2025-07-11
 )
 
-[2025-07-11 19:26:18] REQUEST recibido: Array
+[2025-07-11 20:42:23] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Anáílisis mercado internacional
-    [id_cit] => 203
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-11
 )
 
-[2025-07-11 19:26:24] REQUEST recibido: Array
+[2025-07-11 20:42:27] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Evaluación proyecto Alpha
-    [id_cit] => 148
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-14
 )
 
-[2025-07-11 19:26:30] REQUEST recibido: Array
+[2025-07-11 20:42:31] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Reunión equipo desarrollo
-    [id_cit] => 183
+    [action] => obtener_estructura_tabla
 )
 
-[2025-07-11 19:26:39] REQUEST recibido: Array
+[2025-07-11 20:42:31] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Reunión de planificación Q3
-    [id_cit] => 143
+    [action] => obtener_ejecutivos
 )
 
-[2025-07-11 19:26:48] REQUEST recibido: Array
+[2025-07-11 20:42:31] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Sesión innovación tecnológica
-    [id_cit] => 178
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-11
 )
 
-[2025-07-11 19:26:54] REQUEST recibido: Array
+[2025-07-11 20:43:16] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Supervisión equipo ventas
-    [id_cit] => 158
+    [action] => obtener_estructura_tabla
 )
 
-[2025-07-11 19:27:01] REQUEST recibido: Array
+[2025-07-11 20:43:16] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Sesión mentoría ejecutiva
-    [id_cit] => 198
+    [action] => obtener_ejecutivos
 )
 
-[2025-07-11 19:27:05] REQUEST recibido: Array
+[2025-07-11 20:43:16] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Supervisión cadena suministro
-    [id_cit] => 193
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-11
 )
 
-[2025-07-11 19:27:09] REQUEST recibido: Array
+[2025-07-11 20:43:24] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Sesión estrategia marketing
-    [id_cit] => 153
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-14
 )
 
-[2025-07-11 19:27:13] REQUEST recibido: Array
+[2025-07-11 20:43:34] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Revisión portafolio inversiones
-    [id_cit] => 173
+    [action] => obtener_citas
 )
 
-[2025-07-11 19:27:18] REQUEST recibido: Array
+[2025-07-11 20:43:44] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Estrategia expansión regional
-    [id_cit] => 204
+    [action] => obtener_citas
 )
 
-[2025-07-11 19:27:31] REQUEST recibido: Array
+[2025-07-11 20:43:48] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Evaluaci├│n satisfacción cliente
-    [id_cit] => 188
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-14
 )
 
-[2025-07-11 19:27:36] REQUEST recibido: Array
+[2025-07-11 20:43:56] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Evaluación satisfacción cliente
-    [id_cit] => 188
+    [action] => obtener_citas
+    [fecha_filtro] => 
 )
 
-[2025-07-11 19:27:41] REQUEST recibido: Array
+[2025-07-11 20:43:57] REQUEST recibido: Array
 (
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Negociación proveedor clave
-    [id_cit] => 159
+    [action] => obtener_citas
+    [fecha_filtro] => 
 )
 
-[2025-07-11 19:27:44] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Revisión calidad software
-    [id_cit] => 184
-)
-
-[2025-07-11 19:27:58] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Supervisión seguridad informatica
-    [id_cit] => 208
-)
-
-[2025-07-11 19:28:04] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Reunión con cliente VIP
-    [id_cit] => 149
-)
-
-[2025-07-11 19:28:12] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Negociación contratos logística
-    [id_cit] => 194
-)
-
-[2025-07-11 19:28:22] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Analílisis riesgo crediticio
-    [id_cit] => 174
-)
-
-[2025-07-11 19:28:28] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Revisión arquitectura sistemas
-    [id_cit] => 179
-)
-
-[2025-07-11 19:28:32] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Revisión estrategia corporativa
-    [id_cit] => 199
-)
-
-[2025-07-11 19:28:38] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Analisis competencia mercado
-    [id_cit] => 154
-)
-
-[2025-07-11 19:28:44] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Estrategia retención clientes
-    [id_cit] => 189
-)
-
-[2025-07-11 19:28:49] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Reunión recursos humanos
-    [id_cit] => 169
-)
-
-[2025-07-11 19:28:54] REQUEST recibido: Array
+[2025-07-11 20:44:13] REQUEST recibido: Array
 (
     [action] => obtener_citas
     [fecha_filtro] => 2025-07-13
-)
-
-[2025-07-11 19:29:09] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Comité finanzas corporativas
-    [id_cit] => 175
-)
-
-[2025-07-11 19:29:12] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Optimizaci├│n procesos distribución
-    [id_cit] => 195
-)
-
-[2025-07-11 19:29:17] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Optimización procesos distribución
-    [id_cit] => 195
-)
-
-[2025-07-11 19:29:22] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Capacitación normativas legales
-    [id_cit] => 170
-)
-
-[2025-07-11 19:29:29] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Capacitación protección datos
-    [id_cit] => 210
-)
-
-[2025-07-11 19:29:38] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Analisis journey del cliente
-    [id_cit] => 190
-)
-
-[2025-07-11 19:29:47] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Workshop metodologías ágiles
-    [id_cit] => 180
-)
-
-[2025-07-11 19:29:56] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Evaluación desempeño trimestral
-    [id_cit] => 160
-)
-
-[2025-07-11 19:30:04] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Analisis indicadores KPI
-    [id_cit] => 165
-)
-
-[2025-07-11 19:30:47] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Evaluación riesgos operacionales
-    [id_cit] => 211
-)
-
-[2025-07-11 19:30:54] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Evaluación clima organizacional
-    [id_cit] => 171
-)
-
-[2025-07-11 19:31:00] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Revisión presupuesto anual
-    [id_cit] => 145
-)
-
-[2025-07-11 19:31:08] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Evaluación alianzas estrategicas
-    [id_cit] => 205
-)
-
-[2025-07-11 19:31:20] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Capacitación nuevas tecnologías
-    [id_cit] => 185
-)
-
-[2025-07-11 19:32:10] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Sesión feedback 360
-    [id_cit] => 166
-)
-
-[2025-07-11 19:32:14] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Presentación estados financieros
-    [id_cit] => 176
-)
-
-[2025-07-11 19:32:19] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Presentación resultados Q2
-    [id_cit] => 151
-)
-
-[2025-07-11 19:32:26] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Evaluación proveedores estrategicos
-    [id_cit] => 196
-)
-
-[2025-07-11 19:32:34] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Analisis performance aplicaciones
-    [id_cit] => 186
-)
-
-[2025-07-11 19:32:38] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Capacitación nuevo personal
-    [id_cit] => 146
-)
-
-[2025-07-11 19:32:43] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Evaluación cultura organizacional
-    [id_cit] => 201
-)
-
-[2025-07-11 19:32:50] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Planificación campaña publicitaria
-    [id_cit] => 161
-)
-
-[2025-07-11 19:32:54] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Cierre negociación contrato
-    [id_cit] => 156
-)
-
-[2025-07-11 19:33:01] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Sesión innovación disruptiva
-    [id_cit] => 206
-)
-
-[2025-07-11 19:33:04] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Evaluación herramientas DevOps
-    [id_cit] => 181
-)
-
-[2025-07-11 19:33:11] REQUEST recibido: Array
-(
-    [action] => obtener_citas
-    [fecha_filtro] => 2025-07-14
-)
-
-[2025-07-11 19:34:15] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Planeación estrategica anual
-    [id_cit] => 167
-)
-
-[2025-07-11 19:34:21] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Sesión arquitectura microservicios
-    [id_cit] => 187
-)
-
-[2025-07-11 19:34:27] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Reunión consejo administración
-    [id_cit] => 207
-)
-
-[2025-07-11 19:34:31] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Workshop innovación digital
-    [id_cit] => 152
-)
-
-[2025-07-11 19:34:35] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Reunión auditoria externa
-    [id_cit] => 177
-)
-
-[2025-07-11 19:34:42] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Reunión comité operaciones
-    [id_cit] => 197
-)
-
-[2025-07-11 19:34:54] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Revisión métricas performance
-    [id_cit] => 157
-)
-
-[2025-07-11 19:35:05] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Planeación roadmap tecnologico
-    [id_cit] => 182
-)
-
-[2025-07-11 19:35:14] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Planeación sucesión ejecutiva
-    [id_cit] => 202
-)
-
-[2025-07-11 19:35:25] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Reunión comité ejecutivo
-    [id_cit] => 162
-)
-
-[2025-07-11 19:35:44] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Reunión comité riesgos
-    [id_cit] => 212
-)
-
-[2025-07-11 19:35:53] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Sesión coaching ejecutivo
-    [id_cit] => 172
-)
-
-[2025-07-11 19:35:58] REQUEST recibido: Array
-(
-    [action] => actualizar_cita
-    [campo] => nom_cit
-    [valor] => Reunión equipo customer success
-    [id_cit] => 192
-)
-
-[2025-07-11 19:36:22] REQUEST recibido: Array
-(
-    [action] => obtener_estructura_tabla
-)
-
-[2025-07-11 19:36:22] REQUEST recibido: Array
-(
-    [action] => obtener_ejecutivos
-)
-
-[2025-07-11 19:36:22] REQUEST recibido: Array
-(
-    [action] => obtener_citas
-    [fecha_filtro] => 2025-07-11
-)
-
-[2025-07-11 19:36:27] REQUEST recibido: Array
-(
-    [action] => obtener_citas
-    [fecha_filtro] => 2025-07-14
 )
 
