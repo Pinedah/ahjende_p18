@@ -515,6 +515,75 @@
             border: 2px dashed #28a745 !important;
             border-radius: 8px !important;
         }
+        
+        /* =====================================
+           ESTILOS PARA BADGES DE CONTEO DE CITAS - P18
+           ===================================== */
+        
+        /* Badge para citas propias (blanco) */
+        .badge-citas-propias {
+            background-color: #ffffff;
+            color: #333333;
+            border: 1px solid #dee2e6;
+            margin-left: 5px;
+            font-size: 0.75em;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        
+        .badge-citas-propias:hover {
+            background-color: #f8f9fa;
+            border-color: #007bff;
+            transform: scale(1.05);
+            color: #007bff;
+        }
+        
+        /* Badge para citas recursivas (morado) */
+        .badge-citas-recursivas {
+            background-color: #6f42c1;
+            color: #ffffff;
+            margin-left: 5px;
+            font-size: 0.75em;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        
+        .badge-citas-recursivas:hover {
+            background-color: #563d7c;
+            transform: scale(1.05);
+            box-shadow: 0 2px 4px rgba(111, 66, 193, 0.3);
+        }
+        
+        /* Badge para citas de plantel (azul) */
+        .badge-citas-plantel {
+            background-color: #007bff;
+            color: #ffffff;
+            margin-left: 5px;
+            font-size: 0.75em;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        
+        .badge-citas-plantel:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+        }
+        
+        /* Contenedor para los badges de citas */
+        .badges-citas-container {
+            display: inline-block;
+            margin-left: 8px;
+        }
     </style>
 </head>
 <body>
@@ -524,17 +593,38 @@
         <!-- Panel de control -->
         <div class="control-panel">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <h4>Gestión de Ejecutivos por Plantel</h4>
                     <p class="text-muted">Arrastra y suelta ejecutivos entre planteles para reorganizar la estructura</p>
                 </div>
-                <div class="col-md-4 text-right">
-                    <button class="btn btn-primary mr-2" onclick="mostrarModalCrear()">
-                        <i class="fas fa-plus"></i> Nuevo Ejecutivo
-                    </button>
-                    <button class="btn btn-secondary" onclick="recargarTodos()">
-                        <i class="fas fa-sync"></i> Recargar
-                    </button>
+                <div class="col-md-6">
+                    <!-- Filtros de fecha - P18 -->
+                    <div class="form-row mb-3">
+                        <div class="col-md-4">
+                            <label for="fechaInicio" class="small"><strong>Fecha Inicio:</strong></label>
+                            <input type="date" id="fechaInicio" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fechaFin" class="small"><strong>Fecha Fin:</strong></label>
+                            <input type="date" id="fechaFin" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button class="btn btn-primary btn-sm mr-2" onclick="aplicarFiltroFechas()">
+                                <i class="fas fa-filter"></i> Filtrar
+                            </button>
+                            <button class="btn btn-secondary btn-sm mr-2" onclick="limpiarFiltroFechas()">
+                                <i class="fas fa-times"></i> Limpiar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-primary mr-2" onclick="mostrarModalCrear()">
+                            <i class="fas fa-plus"></i> Nuevo Ejecutivo
+                        </button>
+                        <button class="btn btn-secondary" onclick="recargarTodos()">
+                            <i class="fas fa-sync"></i> Recargar
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -701,13 +791,29 @@
         }
         
         function cargarEjecutivos() {
+            // Obtener fechas de filtro si existen
+            var fechaInicio = $('#fechaInicio').val();
+            var fechaFin = $('#fechaFin').val();
+            
+            var datosEnvio = { 
+                action: 'obtener_ejecutivos_con_citas'
+            };
+            
+            // Agregar filtros de fecha si están definidos
+            if (fechaInicio) {
+                datosEnvio.fecha_inicio = fechaInicio;
+            }
+            if (fechaFin) {
+                datosEnvio.fecha_fin = fechaFin;
+            }
+            
             return $.ajax({
                 url: 'server/controlador_ejecutivos.php',
                 type: 'POST',
-                data: { action: 'obtener_ejecutivos_por_plantel' },
+                data: datosEnvio,
                 dataType: 'json'
             }).done(function(response) {
-                console.log('Respuesta ejecutivos:', response);
+                console.log('Respuesta ejecutivos con citas:', response);
                 if(response.success) {
                     ejecutivos = response.data;
                     console.log('Ejecutivos cargados:', ejecutivos.length);
@@ -726,7 +832,7 @@
                         var ejecutivosPlantel = ejecutivos.filter(ej => ej.id_pla == p.id_pla);
                         console.log('Plantel', p.nom_pla, '(ID:', p.id_pla, ') tiene', ejecutivosPlantel.length, 'ejecutivos');
                         ejecutivosPlantel.forEach(function(ej) {
-                            console.log('  -', ej.nom_eje, 'Activo:', ej.eli_eje, 'Padre:', ej.id_padre);
+                            console.log('  -', ej.nom_eje, 'Activo:', ej.eli_eje, 'Padre:', ej.id_padre, 'Citas propias:', ej.citas_propias, 'Citas recursivas:', ej.citas_recursivas);
                         });
                     });
                     
@@ -751,12 +857,23 @@
             var html = '';
             
             planteles.forEach(function(plantel) {
+                // Calcular conteo de citas por plantel - P18
+                var ejecutivosPlantel = ejecutivos.filter(ej => ej.id_pla == plantel.id_pla);
+                var citasTotalesPlantel = ejecutivosPlantel.reduce(function(total, ej) {
+                    return total + (ej.citas_recursivas || 0);
+                }, 0);
+                
+                var badgeCitasPlantel = citasTotalesPlantel > 0 ? 
+                    `<span class="badge badge-citas-plantel ml-2" onclick="verDetallesCitasPlantel(${plantel.id_pla})" title="Citas totales del plantel: ${citasTotalesPlantel}">${citasTotalesPlantel}</span>` : 
+                    '';
+                
                 html += `
                     <div class="col-md-4">
                         <div class="plantel-container" data-plantel-id="${plantel.id_pla}">
                             <div class="plantel-header">
                                 <i class="fas fa-building"></i> ${plantel.nom_pla}
-                                <div class="badge badge-light" id="count-plantel-${plantel.id_pla}">0</div>
+                                <div class="badge badge-light" id="count-plantel-${plantel.id_pla}">${ejecutivosPlantel.length}</div>
+                                ${badgeCitasPlantel}
                             </div>
                             <div class="plantel-tree" id="jstree-plantel-${plantel.id_pla}"></div>
                         </div>
@@ -1006,6 +1123,20 @@
                     console.log('  - Planteles asociados:', ejecutivo.planteles_asociados_array.length, 'planteles');
                 }
                 
+                // Construir badges de conteo de citas - P18
+                var badgesCitas = '';
+                var badgesPropias = ejecutivo.citas_propias || 0;
+                var badgesRecursivas = ejecutivo.citas_recursivas || 0;
+                
+                if (badgesPropias > 0) {
+                    badgesCitas += '<span class="badge badge-citas-propias" onclick="verDetallesCitas(' + ejecutivo.id_eje + ', \'propias\')" title="Citas propias: ' + badgesPropias + '">' + badgesPropias + '</span>';
+                }
+                if (badgesRecursivas > 0) {
+                    badgesCitas += '<span class="badge badge-citas-recursivas" onclick="verDetallesCitas(' + ejecutivo.id_eje + ', \'recursivas\')" title="Citas totales (recursivas): ' + badgesRecursivas + '">' + badgesRecursivas + '</span>';
+                }
+                
+                console.log('  - Badges citas:', 'Propias:', badgesPropias, 'Recursivas:', badgesRecursivas);
+                
                 // Verificar si el padre existe en el mismo plantel
                 var parent = '#'; // Por defecto es raíz
                 if (ejecutivo.id_padre) {
@@ -1022,7 +1153,7 @@
                 
                 var nodo = {
                     'id': ejecutivo.id_eje,
-                    'text': '<div class="jstree-anchor-content"><span class="ejecutivo-nombre">' + ejecutivo.nom_eje + '</span><div class="jstree-anchor-indicators">' + semaforoHtml + plantelesEmojis + ' ' + badge + '</div></div>',
+                    'text': '<div class="jstree-anchor-content"><span class="ejecutivo-nombre">' + ejecutivo.nom_eje + '</span><div class="jstree-anchor-indicators">' + semaforoHtml + plantelesEmojis + ' ' + badge + badgesCitas + '</div></div>',
                     'icon': icono,
                     'parent': parent,
                     'data': ejecutivo,
@@ -1775,6 +1906,88 @@
                 });
             }
         });
+        
+        // =====================================
+        // FUNCIONES DE FILTROS DE FECHA - P18
+        // =====================================
+        
+        function aplicarFiltroFechas() {
+            var fechaInicio = $('#fechaInicio').val();
+            var fechaFin = $('#fechaFin').val();
+            
+            // Validar fechas
+            if (fechaInicio && fechaFin && fechaInicio > fechaFin) {
+                alert('La fecha de inicio no puede ser mayor que la fecha de fin');
+                return;
+            }
+            
+            console.log('Aplicando filtro de fechas:', fechaInicio, 'a', fechaFin);
+            
+            // Recargar ejecutivos con filtro de fechas
+            cargarEjecutivos().then(function() {
+                generarArbolesPorPlantel();
+                actualizarEstadisticas();
+                console.log('Filtro de fechas aplicado correctamente');
+            });
+        }
+        
+        function limpiarFiltroFechas() {
+            $('#fechaInicio').val('');
+            $('#fechaFin').val('');
+            console.log('Limpiando filtro de fechas');
+            
+            // Recargar ejecutivos sin filtro
+            cargarEjecutivos().then(function() {
+                generarArbolesPorPlantel();
+                actualizarEstadisticas();
+                console.log('Filtro de fechas limpiado');
+            });
+        }
+        
+        // =====================================
+        // FUNCIONES DE NAVEGACIÓN A CITAS - P18
+        // =====================================
+        
+        function verDetallesCitas(idEjecutivo, tipo) {
+            // Navegar al apartado de citas con filtro por ejecutivo
+            var fechaInicio = $('#fechaInicio').val();
+            var fechaFin = $('#fechaFin').val();
+            
+            var url = 'index.php?ejecutivo=' + idEjecutivo;
+            
+            if (fechaInicio) {
+                url += '&fecha_inicio=' + fechaInicio;
+            }
+            if (fechaFin) {
+                url += '&fecha_fin=' + fechaFin;
+            }
+            
+            // Agregar parámetro para indicar el tipo de conteo
+            url += '&tipo_conteo=' + tipo;
+            url += '&origen=plantel';
+            
+            window.location.href = url;
+        }
+        
+        function verDetallesCitasPlantel(idPlantel) {
+            // Navegar al apartado de citas con filtro por plantel
+            var fechaInicio = $('#fechaInicio').val();
+            var fechaFin = $('#fechaFin').val();
+            
+            var url = 'index.php?plantel=' + idPlantel;
+            
+            if (fechaInicio) {
+                url += '&fecha_inicio=' + fechaInicio;
+            }
+            if (fechaFin) {
+                url += '&fecha_fin=' + fechaFin;
+            }
+            
+            url += '&tipo_conteo=plantel';
+            url += '&origen=plantel';
+            
+            window.location.href = url;
+        }
     </script>
 </body>
 </html>
