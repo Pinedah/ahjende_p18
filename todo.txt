@@ -1,0 +1,23 @@
+📌 p18 - Conteos Recursivos desde Ejecutivos / Citas
+Inicialización de datos:
+
+Poblar con 5 o 7 citas recientes a cada ejecutivo de los 3 planteles generados 📋
+Generar un árbol de 5 nodos por plantel 🌳
+
+Conteo particular:
+Totalizar citas asociadas a cada ejecutivo (particular) y desplegar en un badge color blanco 🔢.
+Conteo recursivo:
+También contar recursivamente hacia el nodo raíz las citas, ejemplo:
+Nodo_abuelo [1 cita pripia][6 citas totales (contando hijos)]
+    Nodo_padre [3 citas propias][5 citas totlaes (contando hijos)]
+        Nodo_hijo [2 citas propias][2 citas totales (contando hijos)]
+Dicho conteo (el de las citas totales) recursivo se desplegará en un badge de color morado 🟣.
+
+Filtro de fechas:
+Implementar un filtro de fechas (inicio y fin) que cuando se definan fechas y se haga submit → se visualice por ejecutivo cuántas citas tienen asociadas en tal periodicidad 📅.
+
+Navegación a detalle:
+Ambos badges (la de citas propias de color blanco y la de citas totales de color morado) serán hipervínculos que llevará al detalle respectivo en el apartado de citas 🔗.
+
+Funcionalidad de plantel (arbol_planteles.php):
+El plantel también debe tener dicha funcionalidad de conteos totales de citas por plantel (badge morado) y estar sujeto al dinamismo del filtro de fechas, así como el hipervínculo que manda al detalle en citas 🏢.

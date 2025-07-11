@@ -1,0 +1,1900 @@
+[2025-07-11 19:09:11] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:09:11] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:09:11] Planteles encontrados: 3
+[2025-07-11 19:09:11] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:09:11] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:09:11] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:09:11] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:09:11] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:09:11] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:09:11] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:09:11] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:09:11] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:09:11] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:09:11] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:09:11] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:09:11] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:09:11] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:11:12] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:11:12] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:11:12] Planteles encontrados: 3
+[2025-07-11 19:11:12] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:11:12] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:11:12] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:11:12] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:11:12] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:11:12] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:11:12] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:11:12] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:11:12] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:11:12] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:11:12] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:11:12] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:11:12] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:11:12] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:12:57] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:12:57] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:12:57] Planteles encontrados: 3
+[2025-07-11 19:12:57] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:12:57] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:12:57] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:12:57] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:12:57] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:12:57] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:12:57] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:12:57] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:12:57] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:12:57] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:12:57] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:12:57] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:12:57] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:12:57] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:13:23] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:13:23] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:13:23] Planteles encontrados: 3
+[2025-07-11 19:13:23] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:13:23] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:13:23] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:13:23] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:13:23] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:13:23] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:13:23] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:13:23] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:13:23] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:13:23] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:13:23] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:13:23] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:23] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:13:23] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:13:31] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:13:31] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:13:31] Planteles encontrados: 3
+[2025-07-11 19:13:31] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:13:31] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:13:31] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:13:31] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:13:31] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:13:31] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:13:31] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:13:31] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:13:31] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:13:31] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:13:31] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:13:31] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:31] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:13:31] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:13:42] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:13:42] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:13:42] Planteles encontrados: 3
+[2025-07-11 19:13:42] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:13:42] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:13:42] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:13:42] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:13:42] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:13:42] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:13:42] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:13:42] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:13:42] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:13:42] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:13:42] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:13:42] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:13:42] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:13:42] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:14:27] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:14:27] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:14:27] Planteles encontrados: 3
+[2025-07-11 19:14:27] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:14:27] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:14:27] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:14:27] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:14:27] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:14:27] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:14:27] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:14:27] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:14:27] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:14:27] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:14:27] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:14:27] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:27] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:14:27] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:14:39] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:14:39] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:14:39] Planteles encontrados: 3
+[2025-07-11 19:14:39] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:14:39] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:14:39] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:14:39] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:14:39] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:14:39] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:14:39] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:14:39] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:14:39] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:14:39] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:14:39] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:14:39] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:14:39] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:14:39] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:15:18] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:15:18] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:15:18] Planteles encontrados: 3
+[2025-07-11 19:15:18] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:15:18] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:15:18] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:15:18] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:15:18] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:15:18] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:15:18] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:15:18] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:15:18] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:15:18] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:15:18] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:15:18] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:15:18] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:15:18] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:16:57] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:16:57] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:16:57] Planteles encontrados: 3
+[2025-07-11 19:16:57] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:16:57] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:16:57] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:17:02] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:17:02] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:17:02] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:17:02] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:17:02] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:17:02] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:17:02] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:17:02] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:17:02] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:17:02] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:17:02] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:17:02] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:02] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:17:02] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:17:20] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:17:20] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:17:20] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:17:20] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:17:20] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:17:20] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:17:20] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:17:20] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:17:20] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:17:20] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:17:20] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:17:20] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:20] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:17:20] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:17:59] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:17:59] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:17:59] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:17:59] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:17:59] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:17:59] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:17:59] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:17:59] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:17:59] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:17:59] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:17:59] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:17:59] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:17:59] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:17:59] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:18:12] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:18:12] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:18:12] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:12] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:12] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:18:12] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:12] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:12] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:18:12] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:12] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:12] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:12] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:12] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:18:12] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:18:13] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:18:13] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:18:13] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:13] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:13] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:18:13] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:13] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:13] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:18:13] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:13] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:13] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:13] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:13] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:18:13] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:18:14] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:18:14] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:18:14] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:14] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:14] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:18:14] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:14] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:14] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:18:14] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:14] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:14] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:14] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:14] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:18:14] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:18:24] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:18:24] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:18:24] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:24] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:24] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:18:24] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:24] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:24] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:18:24] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:24] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:24] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:24] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:24] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:18:24] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:18:31] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:18:31] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:18:31] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:31] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:31] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:18:31] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:31] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:31] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:18:31] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:31] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:31] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:31] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:31] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:18:31] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:18:33] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:18:33] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:18:33] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:33] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:33] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:18:33] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:33] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:33] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:18:33] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:18:33] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:33] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:18:33] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:18:33] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:18:33] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:19:27] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:19:27] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:19:27] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:19:27] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:19:27] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:19:27] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:19:27] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:19:27] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 15 - Total: 20
+[2025-07-11 19:19:27] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:19:27] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:19:27] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:19:27] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:19:27] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 5 - Total: 5
+[2025-07-11 19:19:27] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:19:45] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:19:45] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:19:45] Planteles encontrados: 3
+[2025-07-11 19:19:45] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:19:45] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:19:45] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:19:47] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 6
+)
+
+[2025-07-11 19:19:47] ==============================================
+[2025-07-11 19:19:47] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-11 19:19:47] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 6
+)
+
+[2025-07-11 19:19:47] Valores procesados:
+[2025-07-11 19:19:47] - ID Ejecutivo: 4
+[2025-07-11 19:19:47] - ID Padre: NULL
+[2025-07-11 19:19:47] - ID Plantel: 6
+[2025-07-11 19:19:47] ANTES - Ejecutivo: Francisco Pineda, Padre anterior: 11, Plantel anterior: 3
+[2025-07-11 19:19:47] NUEVO PLANTEL: Plantel Cuautitlán (ID: 6)
+[2025-07-11 19:19:47] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = '6' WHERE id_eje = '4'
+[2025-07-11 19:19:47] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 6
+[2025-07-11 19:19:47] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-11 19:19:47] RESPUESTA ENVIADA: SUCCESS
+[2025-07-11 19:19:47] ==============================================
+[2025-07-11 19:19:47] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:19:47] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:19:47] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:19:49] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:19:49] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:19:49] Planteles encontrados: 3
+[2025-07-11 19:19:49] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:19:49] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:19:49] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:19:53] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 3
+)
+
+[2025-07-11 19:19:53] ==============================================
+[2025-07-11 19:19:53] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-11 19:19:53] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 3
+)
+
+[2025-07-11 19:19:53] Valores procesados:
+[2025-07-11 19:19:53] - ID Ejecutivo: 4
+[2025-07-11 19:19:53] - ID Padre: NULL
+[2025-07-11 19:19:53] - ID Plantel: 3
+[2025-07-11 19:19:53] ANTES - Ejecutivo: Francisco Pineda, Padre anterior: , Plantel anterior: 6
+[2025-07-11 19:19:53] NUEVO PLANTEL: Plantel Ecatepec (ID: 3)
+[2025-07-11 19:19:53] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = '3' WHERE id_eje = '4'
+[2025-07-11 19:19:53] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 3
+[2025-07-11 19:19:53] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-11 19:19:53] RESPUESTA ENVIADA: SUCCESS
+[2025-07-11 19:19:53] ==============================================
+[2025-07-11 19:19:53] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:19:53] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:19:53] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:19:55] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:19:55] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:19:55] Planteles encontrados: 3
+[2025-07-11 19:19:55] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:19:55] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:19:55] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:19:59] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 10
+    [id_padre] => 
+    [id_pla] => 3
+)
+
+[2025-07-11 19:19:59] ==============================================
+[2025-07-11 19:19:59] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-11 19:19:59] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 10
+    [id_padre] => 
+    [id_pla] => 3
+)
+
+[2025-07-11 19:19:59] Valores procesados:
+[2025-07-11 19:19:59] - ID Ejecutivo: 10
+[2025-07-11 19:19:59] - ID Padre: NULL
+[2025-07-11 19:19:59] - ID Plantel: 3
+[2025-07-11 19:19:59] ANTES - Ejecutivo: Luis Rodriguez, Padre anterior: 1, Plantel anterior: 3
+[2025-07-11 19:19:59] NUEVO PLANTEL: Plantel Ecatepec (ID: 3)
+[2025-07-11 19:19:59] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = '3' WHERE id_eje = '10'
+[2025-07-11 19:19:59] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 3
+[2025-07-11 19:19:59] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-11 19:19:59] RESPUESTA ENVIADA: SUCCESS
+[2025-07-11 19:19:59] ==============================================
+[2025-07-11 19:19:59] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:19:59] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:19:59] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:20:01] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:20:01] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:20:01] Planteles encontrados: 3
+[2025-07-11 19:20:01] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:20:01] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:01] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:20:04] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 13
+    [id_padre] => 
+    [id_pla] => 6
+)
+
+[2025-07-11 19:20:04] ==============================================
+[2025-07-11 19:20:04] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-11 19:20:04] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 13
+    [id_padre] => 
+    [id_pla] => 6
+)
+
+[2025-07-11 19:20:04] Valores procesados:
+[2025-07-11 19:20:04] - ID Ejecutivo: 13
+[2025-07-11 19:20:04] - ID Padre: NULL
+[2025-07-11 19:20:04] - ID Plantel: 6
+[2025-07-11 19:20:04] ANTES - Ejecutivo: Sofia Mendoza, Padre anterior: 14, Plantel anterior: 6
+[2025-07-11 19:20:04] NUEVO PLANTEL: Plantel Cuautitlán (ID: 6)
+[2025-07-11 19:20:04] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = '6' WHERE id_eje = '13'
+[2025-07-11 19:20:04] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 6
+[2025-07-11 19:20:04] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-11 19:20:04] RESPUESTA ENVIADA: SUCCESS
+[2025-07-11 19:20:04] ==============================================
+[2025-07-11 19:20:04] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:20:04] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:04] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:20:06] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 16
+    [id_padre] => 
+    [id_pla] => 6
+)
+
+[2025-07-11 19:20:06] ==============================================
+[2025-07-11 19:20:06] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-11 19:20:06] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 16
+    [id_padre] => 
+    [id_pla] => 6
+)
+
+[2025-07-11 19:20:06] Valores procesados:
+[2025-07-11 19:20:06] - ID Ejecutivo: 16
+[2025-07-11 19:20:06] - ID Padre: NULL
+[2025-07-11 19:20:06] - ID Plantel: 6
+[2025-07-11 19:20:06] ANTES - Ejecutivo: Andres Castro, Padre anterior: 14, Plantel anterior: 6
+[2025-07-11 19:20:06] NUEVO PLANTEL: Plantel Cuautitlán (ID: 6)
+[2025-07-11 19:20:06] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = '6' WHERE id_eje = '16'
+[2025-07-11 19:20:06] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 6
+[2025-07-11 19:20:06] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-11 19:20:06] RESPUESTA ENVIADA: SUCCESS
+[2025-07-11 19:20:06] ==============================================
+[2025-07-11 19:20:06] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:20:06] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:06] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:20:07] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:20:07] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:20:07] Planteles encontrados: 3
+[2025-07-11 19:20:07] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:20:07] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:07] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:20:12] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 1
+    [id_padre] => 
+    [id_pla] => 3
+)
+
+[2025-07-11 19:20:12] ==============================================
+[2025-07-11 19:20:12] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-11 19:20:12] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 1
+    [id_padre] => 
+    [id_pla] => 3
+)
+
+[2025-07-11 19:20:12] Valores procesados:
+[2025-07-11 19:20:12] - ID Ejecutivo: 1
+[2025-07-11 19:20:12] - ID Padre: NULL
+[2025-07-11 19:20:12] - ID Plantel: 3
+[2025-07-11 19:20:12] ANTES - Ejecutivo: Juan Carlos Pérez, Padre anterior: , Plantel anterior: 3
+[2025-07-11 19:20:12] NUEVO PLANTEL: Plantel Ecatepec (ID: 3)
+[2025-07-11 19:20:12] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = '3' WHERE id_eje = '1'
+[2025-07-11 19:20:12] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 3
+[2025-07-11 19:20:12] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-11 19:20:12] RESPUESTA ENVIADA: SUCCESS
+[2025-07-11 19:20:12] ==============================================
+[2025-07-11 19:20:12] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:20:12] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:12] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:20:14] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 1
+    [id_padre] => 10
+    [id_pla] => 3
+)
+
+[2025-07-11 19:20:14] ==============================================
+[2025-07-11 19:20:14] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-11 19:20:14] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 1
+    [id_padre] => 10
+    [id_pla] => 3
+)
+
+[2025-07-11 19:20:14] Valores procesados:
+[2025-07-11 19:20:14] - ID Ejecutivo: 1
+[2025-07-11 19:20:14] - ID Padre: 10
+[2025-07-11 19:20:14] - ID Plantel: 3
+[2025-07-11 19:20:14] ANTES - Ejecutivo: Juan Carlos Pérez, Padre anterior: , Plantel anterior: 3
+[2025-07-11 19:20:14] NUEVO PADRE: Luis Rodriguez (ID: 10)
+[2025-07-11 19:20:14] NUEVO PLANTEL: Plantel Ecatepec (ID: 3)
+[2025-07-11 19:20:14] QUERY MOVER: UPDATE ejecutivo SET id_padre = '10', id_pla = '3' WHERE id_eje = '1'
+[2025-07-11 19:20:14] VERIFICACIÓN - Nuevo padre: 10, Nuevo plantel: 3
+[2025-07-11 19:20:14] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-11 19:20:14] RESPUESTA ENVIADA: SUCCESS
+[2025-07-11 19:20:14] ==============================================
+[2025-07-11 19:20:14] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:20:14] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:14] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:20:15] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-11 19:20:15] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-11 19:20:15] Planteles encontrados: 3
+[2025-07-11 19:20:15] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-11 19:20:15] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) <= 1 THEN 'verde'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) BETWEEN 2 AND 3 THEN 'amarillo'
+					             WHEN TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) >= 4 THEN 'rojo'
+					             ELSE 'sin_sesion'
+					         END as semaforo_sesion,
+					         TIMESTAMPDIFF(DAY, e.ult_eje, NOW()) as dias_desde_ultima_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:15] Ejecutivos por plantel encontrados: 15
+[2025-07-11 19:20:22] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:20:22] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:22] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:20:22] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:20:22] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:20:22] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:20:22] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:22] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 0 - Total: 0
+[2025-07-11 19:20:22] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:20:28] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 11
+    [id_padre] => 
+)
+
+[2025-07-11 19:20:28] ==============================================
+[2025-07-11 19:20:28] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-11 19:20:28] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 11
+    [id_padre] => 
+)
+
+[2025-07-11 19:20:28] Valores procesados:
+[2025-07-11 19:20:28] - ID Ejecutivo: 11
+[2025-07-11 19:20:28] - ID Padre: NULL
+[2025-07-11 19:20:28] - ID Plantel: NULL
+[2025-07-11 19:20:28] ANTES - Ejecutivo: Carmen Morales Vega, Padre anterior: 2, Plantel anterior: 3
+[2025-07-11 19:20:28] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = NULL WHERE id_eje = '11'
+[2025-07-11 19:20:28] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 
+[2025-07-11 19:20:28] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-11 19:20:28] RESPUESTA ENVIADA: SUCCESS
+[2025-07-11 19:20:28] ==============================================
+[2025-07-11 19:20:30] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:20:30] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:30] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:20:30] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:20:30] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:30] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 0 - Total: 0
+[2025-07-11 19:20:30] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:20:33] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 2
+    [id_padre] => 
+)
+
+[2025-07-11 19:20:33] ==============================================
+[2025-07-11 19:20:33] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-11 19:20:33] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 2
+    [id_padre] => 
+)
+
+[2025-07-11 19:20:33] Valores procesados:
+[2025-07-11 19:20:33] - ID Ejecutivo: 2
+[2025-07-11 19:20:33] - ID Padre: NULL
+[2025-07-11 19:20:33] - ID Plantel: NULL
+[2025-07-11 19:20:33] ANTES - Ejecutivo: María Fernanda López, Padre anterior: 18, Plantel anterior: 2
+[2025-07-11 19:20:33] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = NULL WHERE id_eje = '2'
+[2025-07-11 19:20:33] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 
+[2025-07-11 19:20:33] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-11 19:20:33] RESPUESTA ENVIADA: SUCCESS
+[2025-07-11 19:20:33] ==============================================
+[2025-07-11 19:20:35] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:20:35] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:35] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:20:35] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:35] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 0 - Total: 0
+[2025-07-11 19:20:35] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:20:40] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 1
+    [id_padre] => 
+)
+
+[2025-07-11 19:20:40] ==============================================
+[2025-07-11 19:20:40] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-11 19:20:40] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 1
+    [id_padre] => 
+)
+
+[2025-07-11 19:20:40] Valores procesados:
+[2025-07-11 19:20:40] - ID Ejecutivo: 1
+[2025-07-11 19:20:40] - ID Padre: NULL
+[2025-07-11 19:20:40] - ID Plantel: NULL
+[2025-07-11 19:20:40] ANTES - Ejecutivo: Juan Carlos Pérez, Padre anterior: 10, Plantel anterior: 3
+[2025-07-11 19:20:40] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = NULL WHERE id_eje = '1'
+[2025-07-11 19:20:40] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 
+[2025-07-11 19:20:40] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-11 19:20:40] RESPUESTA ENVIADA: SUCCESS
+[2025-07-11 19:20:40] ==============================================
+[2025-07-11 19:20:41] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:20:41] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:41] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:20:41] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:41] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 0 - Total: 0
+[2025-07-11 19:20:41] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:20:49] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 6
+)
+
+[2025-07-11 19:20:49] ==============================================
+[2025-07-11 19:20:49] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-11 19:20:49] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 6
+)
+
+[2025-07-11 19:20:49] Valores procesados:
+[2025-07-11 19:20:49] - ID Ejecutivo: 4
+[2025-07-11 19:20:49] - ID Padre: 6
+[2025-07-11 19:20:49] - ID Plantel: NULL
+[2025-07-11 19:20:49] ANTES - Ejecutivo: Francisco Pineda, Padre anterior: , Plantel anterior: 3
+[2025-07-11 19:20:49] NUEVO PADRE: Fatima Nava (ID: 6)
+[2025-07-11 19:20:49] QUERY MOVER: UPDATE ejecutivo SET id_padre = '6', id_pla = NULL WHERE id_eje = '4'
+[2025-07-11 19:20:49] VERIFICACIÓN - Nuevo padre: 6, Nuevo plantel: 
+[2025-07-11 19:20:49] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-11 19:20:49] RESPUESTA ENVIADA: SUCCESS
+[2025-07-11 19:20:49] ==============================================
+[2025-07-11 19:20:51] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:20:51] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:51] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:20:51] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:20:51] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:51] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 0 - Total: 0
+[2025-07-11 19:20:51] Ejecutivos con citas encontrados: 15
+[2025-07-11 19:20:55] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 18
+    [id_padre] => 6
+)
+
+[2025-07-11 19:20:55] ==============================================
+[2025-07-11 19:20:55] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-11 19:20:55] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 18
+    [id_padre] => 6
+)
+
+[2025-07-11 19:20:55] Valores procesados:
+[2025-07-11 19:20:55] - ID Ejecutivo: 18
+[2025-07-11 19:20:55] - ID Padre: 6
+[2025-07-11 19:20:55] - ID Plantel: NULL
+[2025-07-11 19:20:55] ANTES - Ejecutivo: Francisco Pineda Hernández, Padre anterior: , Plantel anterior: 2
+[2025-07-11 19:20:55] NUEVO PADRE: Fatima Nava (ID: 6)
+[2025-07-11 19:20:55] QUERY MOVER: UPDATE ejecutivo SET id_padre = '6', id_pla = NULL WHERE id_eje = '18'
+[2025-07-11 19:20:55] VERIFICACIÓN - Nuevo padre: 6, Nuevo plantel: 
+[2025-07-11 19:20:55] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-11 19:20:55] RESPUESTA ENVIADA: SUCCESS
+[2025-07-11 19:20:55] ==============================================
+[2025-07-11 19:20:56] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_citas
+)
+
+[2025-07-11 19:20:56] Query ejecutivos con citas: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje,
+					         p.nom_pla as plantel_principal,
+					         COUNT(DISTINCT c.id_cit) as citas_propias,
+					         CASE 
+					             WHEN e.ult_eje IS NULL THEN 'sin_sesion'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 'inactivo'
+					             WHEN e.ult_eje < DATE_SUB(NOW(), INTERVAL 30 MINUTE) THEN 'ausente'
+					             ELSE 'activo'
+					         END as semaforo_sesion
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN cita c ON e.id_eje = c.id_eje2 AND c.eli_cit = 1 
+					  GROUP BY e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, e.ult_eje, p.nom_pla
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-11 19:20:56] Ejecutivo ID: 9 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 16 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 11 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 12 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 15 - Citas propias: 5 - Citas hijos: 5 - Total: 10
+[2025-07-11 19:20:56] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 6 - Citas propias: 5 - Citas hijos: 10 - Total: 15
+[2025-07-11 19:20:56] Ejecutivo ID: 4 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 18 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 10 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 2 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 14 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 21 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 20 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 13 - Citas propias: 5 - Citas hijos: 0 - Total: 5
+[2025-07-11 19:20:56] Ejecutivo ID: 1 - Citas propias: 0 - Citas hijos: 0 - Total: 0
+[2025-07-11 19:20:56] Ejecutivos con citas encontrados: 15
