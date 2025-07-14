@@ -35,6 +35,41 @@
             border-radius: 5px;
             margin-bottom: 20px;
         }
+        .filter-section label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 5px;
+        }
+        .filter-section .form-control {
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .filter-section .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        .filter-section .btn {
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-weight: 500;
+        }
+        .filter-section .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .filter-section .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+        .filter-section .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .filter-section .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
         .search-section {
             background-color: #f1f3f4;
             padding: 15px;
@@ -122,9 +157,13 @@
                 <!-- Filtro de fecha -->
                 <div class="filter-section">
                     <div class="row">
-                        <div class="col-md-3">
-                            <label for="fecha-filtro"><strong>Filtro por Fecha:</strong></label>
-                            <input type="date" id="fecha-filtro" class="form-control" value="">
+                        <div class="col-md-2">
+                            <label for="fecha-inicio-filtro"><strong>Fecha Inicio:</strong></label>
+                            <input type="date" id="fecha-inicio-filtro" class="form-control" value="">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="fecha-fin-filtro"><strong>Fecha Fin:</strong></label>
+                            <input type="date" id="fecha-fin-filtro" class="form-control" value="">
                         </div>
                         <div class="col-md-3">
                             <label for="ejecutivo-filtro"><strong>Ejecutivo:</strong></label>
@@ -132,7 +171,7 @@
                                 <option value="">Todos los ejecutivos</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="planteles-asociados-filtro"><strong>Incluir Planteles Asociados:</strong></label>
                             <div class="form-check mt-2">
                                 <input class="form-check-input" type="checkbox" id="planteles-asociados-filtro" value="1">
@@ -142,8 +181,34 @@
                             </div>
                         </div>
                         <div class="col-md-3 d-flex align-items-end">
-                            <button class="btn btn-info mr-2" onclick="cargarCitas()">Filtrar</button>
-                            <button class="btn btn-secondary" onclick="limpiarFiltros()">Limpiar</button>
+                            <button class="btn btn-info mr-2" onclick="cargarCitas()">
+                                <i class="fas fa-filter"></i> Filtrar
+                            </button>
+                            <button class="btn btn-secondary" onclick="limpiarFiltros()">
+                                <i class="fas fa-times"></i> Limpiar
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Información del filtro activo -->
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <div id="info-filtro-activo" class="alert alert-info" style="display: none; margin-bottom: 0; padding: 8px 12px;">
+                                <small><strong>Filtros activos:</strong> <span id="detalle-filtros"></span></small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Filtros rápidos -->
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <small class="text-muted">
+                                <strong>Filtros rápidos:</strong>
+                                <button class="btn btn-sm btn-outline-secondary ml-1" onclick="aplicarFiltroRapido('hoy')">Hoy</button>
+                                <button class="btn btn-sm btn-outline-secondary ml-1" onclick="aplicarFiltroRapido('semana')">Esta Semana</button>
+                                <button class="btn btn-sm btn-outline-secondary ml-1" onclick="aplicarFiltroRapido('mes')">Este Mes</button>
+                                <button class="btn btn-sm btn-outline-secondary ml-1" onclick="aplicarFiltroRapido('ultimos7')">Últimos 7 días</button>
+                                <button class="btn btn-sm btn-outline-secondary ml-1" onclick="aplicarFiltroRapido('ultimos30')">Últimos 30 días</button>
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -253,8 +318,20 @@
         // =====================================
         
         $(document).ready(function() {
-            var fechaHoy = new Date().toISOString().split('T')[0];
-            $('#fecha-filtro').val(fechaHoy);
+            // Configurar fechas por defecto (última semana)
+            var fechaHoy = new Date();
+            var fechaFin = fechaHoy.toISOString().split('T')[0];
+            var fechaInicioDate = new Date(fechaHoy);
+            fechaInicioDate.setDate(fechaInicioDate.getDate() - 7); // Una semana atrás
+            var fechaInicio = fechaInicioDate.toISOString().split('T')[0];
+            
+            $('#fecha-inicio-filtro').val(fechaInicio);
+            $('#fecha-fin-filtro').val(fechaFin);
+            
+            // Agregar validación de fechas
+            $('#fecha-inicio-filtro, #fecha-fin-filtro').on('change', function() {
+                validarRangoFechas();
+            });
             
             // Cargar estructura de columnas primero
             cargarEstructuraTabla().then(function() {
@@ -269,6 +346,24 @@
             
             aplicarFiltrosDesdeURL();
         });
+        
+        // Función para validar rango de fechas
+        function validarRangoFechas() {
+            var fechaInicio = $('#fecha-inicio-filtro').val();
+            var fechaFin = $('#fecha-fin-filtro').val();
+            
+            if (fechaInicio && fechaFin) {
+                var inicio = new Date(fechaInicio);
+                var fin = new Date(fechaFin);
+                
+                if (inicio > fin) {
+                    alert('La fecha de inicio no puede ser mayor que la fecha de fin');
+                    $('#fecha-inicio-filtro').val('');
+                    return false;
+                }
+            }
+            return true;
+        }
         
         // =====================================
         // FUNCIONES DE CONFIGURACIÓN
@@ -947,20 +1042,41 @@
         // =====================================
         
         function cargarCitas() {
+            // Validar rango de fechas antes de continuar
+            if (!validarRangoFechas()) {
+                return;
+            }
+            
             modoFiltroFecha = true;
-            var fecha = $('#fecha-filtro').val();
+            var fechaInicio = $('#fecha-inicio-filtro').val();
+            var fechaFin = $('#fecha-fin-filtro').val();
             var idEjecutivo = $('#ejecutivo-filtro').val();
             var incluirPlanteles = $('#planteles-asociados-filtro').is(':checked');
             
             var datos = { 
-                action: 'obtener_citas',
-                fecha_filtro: fecha
+                action: 'obtener_citas'
             };
+            
+            // Agregar filtros de fecha si están presentes
+            if (fechaInicio) {
+                datos.fecha_inicio = fechaInicio;
+            }
+            if (fechaFin) {
+                datos.fecha_fin = fechaFin;
+            }
             
             if (idEjecutivo) {
                 datos.id_ejecutivo = idEjecutivo;
-                datos.incluir_planteles_asociados = incluirPlanteles;
+                datos.incluir_planteles_asociados = incluirPlanteles ? 'true' : 'false';
             }
+            
+            console.log('=== DEBUG CARGAR CITAS ===');
+            console.log('Fecha inicio:', fechaInicio);
+            console.log('Fecha fin:', fechaFin);
+            console.log('ID Ejecutivo:', idEjecutivo);
+            console.log('Incluir planteles:', incluirPlanteles);
+            console.log('Datos enviados:', datos);
+            console.log('========================');
             
             $.ajax({
                 url: 'server/controlador_citas.php',
@@ -969,15 +1085,98 @@
                 dataType: 'json',
                 success: function(response) {
                     if(response.success) {
+                        console.log('Citas cargadas:', response.data.length, 'registros');
+                        // Mostrar algunas citas para debug
+                        if (response.data.length > 0) {
+                            console.log('Primeras 3 citas:', response.data.slice(0, 3));
+                        }
                         mostrarCitasEnTabla(response.data, true);
+                        actualizarInfoFiltroActivo();
                     } else {
                         alert('Error: ' + response.message);
                     }
                 },
-                error: function() {
-                    alert('Error de conexión al servidor');
+                error: function(xhr, status, error) {
+                    console.error('Error al cargar citas:', error);
+                    alert('Error de conexión al servidor: ' + error);
                 }
             });
+        }
+        
+        function actualizarInfoFiltroActivo() {
+            var filtros = [];
+            var fechaInicio = $('#fecha-inicio-filtro').val();
+            var fechaFin = $('#fecha-fin-filtro').val();
+            var idEjecutivo = $('#ejecutivo-filtro').val();
+            var incluirPlanteles = $('#planteles-asociados-filtro').is(':checked');
+            
+            if (fechaInicio && fechaFin) {
+                filtros.push('📅 Fechas: ' + fechaInicio + ' a ' + fechaFin);
+            } else if (fechaInicio) {
+                filtros.push('📅 Desde: ' + fechaInicio);
+            } else if (fechaFin) {
+                filtros.push('📅 Hasta: ' + fechaFin);
+            }
+            
+            if (idEjecutivo) {
+                var nombreEjecutivo = $('#ejecutivo-filtro option:selected').text();
+                filtros.push('👤 Ejecutivo: ' + nombreEjecutivo);
+                
+                if (incluirPlanteles) {
+                    filtros.push('🕋 Incluyendo planteles asociados');
+                }
+            }
+            
+            if (filtros.length > 0) {
+                $('#detalle-filtros').text(filtros.join(' | '));
+                $('#info-filtro-activo').show();
+            } else {
+                $('#info-filtro-activo').hide();
+            }
+        }
+        
+        function aplicarFiltroRapido(tipo) {
+            var fechaHoy = new Date();
+            var fechaInicio, fechaFin;
+            
+            switch(tipo) {
+                case 'hoy':
+                    fechaInicio = fechaFin = fechaHoy.toISOString().split('T')[0];
+                    break;
+                    
+                case 'semana':
+                    // Inicio de la semana (lunes)
+                    var inicioSemana = new Date(fechaHoy);
+                    inicioSemana.setDate(fechaHoy.getDate() - fechaHoy.getDay() + 1);
+                    fechaInicio = inicioSemana.toISOString().split('T')[0];
+                    fechaFin = fechaHoy.toISOString().split('T')[0];
+                    break;
+                    
+                case 'mes':
+                    // Inicio del mes actual
+                    var inicioMes = new Date(fechaHoy.getFullYear(), fechaHoy.getMonth(), 1);
+                    fechaInicio = inicioMes.toISOString().split('T')[0];
+                    fechaFin = fechaHoy.toISOString().split('T')[0];
+                    break;
+                    
+                case 'ultimos7':
+                    var hace7Dias = new Date(fechaHoy);
+                    hace7Dias.setDate(fechaHoy.getDate() - 7);
+                    fechaInicio = hace7Dias.toISOString().split('T')[0];
+                    fechaFin = fechaHoy.toISOString().split('T')[0];
+                    break;
+                    
+                case 'ultimos30':
+                    var hace30Dias = new Date(fechaHoy);
+                    hace30Dias.setDate(fechaHoy.getDate() - 30);
+                    fechaInicio = hace30Dias.toISOString().split('T')[0];
+                    fechaFin = fechaHoy.toISOString().split('T')[0];
+                    break;
+            }
+            
+            $('#fecha-inicio-filtro').val(fechaInicio);
+            $('#fecha-fin-filtro').val(fechaFin);
+            cargarCitas();
         }
         
         function buscarCitas() {
@@ -1024,9 +1223,21 @@
         }
         
         function limpiarFiltros() {
-            $('#fecha-filtro').val('');
+            // Configurar fechas por defecto (última semana)
+            var fechaHoy = new Date();
+            var fechaFin = fechaHoy.toISOString().split('T')[0];
+            var fechaInicioDate = new Date(fechaHoy);
+            fechaInicioDate.setDate(fechaInicioDate.getDate() - 7); // Una semana atrás
+            var fechaInicio = fechaInicioDate.toISOString().split('T')[0];
+            
+            $('#fecha-inicio-filtro').val(fechaInicio);
+            $('#fecha-fin-filtro').val(fechaFin);
             $('#ejecutivo-filtro').val('');
             $('#planteles-asociados-filtro').prop('checked', false);
+            
+            // Ocultar información del filtro activo
+            $('#info-filtro-activo').hide();
+            
             cargarCitas();
         }
         

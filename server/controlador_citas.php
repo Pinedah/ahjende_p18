@@ -27,8 +27,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		case 'obtener_citas':
 			$fecha_filtro = isset($_POST['fecha_filtro']) ? escape($_POST['fecha_filtro'], $connection) : null;
-			$id_ejecutivo = isset($_POST['id_ejecutivo']) ? intval($_POST['id_ejecutivo']) : null;
-			$incluir_planteles_asociados = isset($_POST['incluir_planteles_asociados']) ? boolval($_POST['incluir_planteles_asociados']) : false;
+			$fecha_inicio = isset($_POST['fecha_inicio']) ? escape($_POST['fecha_inicio'], $connection) : null;
+			$fecha_fin = isset($_POST['fecha_fin']) ? escape($_POST['fecha_fin'], $connection) : null;
+			$id_ejecutivo = isset($_POST['id_ejecutivo']) ? intval($_POST['id_ejecutivo']) : null;		$incluir_planteles_asociados = isset($_POST['incluir_planteles_asociados']) && 
+										($_POST['incluir_planteles_asociados'] === 'true' || $_POST['incluir_planteles_asociados'] === true || $_POST['incluir_planteles_asociados'] === 1 || $_POST['incluir_planteles_asociados'] === '1');
+		
+		// Log para debugging
+		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] FILTRO CITAS - Parámetros recibidos:' . "\n", FILE_APPEND);
+		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - fecha_inicio: ' . ($fecha_inicio ?: 'null') . "\n", FILE_APPEND);
+		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - fecha_fin: ' . ($fecha_fin ?: 'null') . "\n", FILE_APPEND);
+		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - id_ejecutivo: ' . ($id_ejecutivo ?: 'null') . "\n", FILE_APPEND);
+		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - incluir_planteles_asociados RAW: ' . (isset($_POST['incluir_planteles_asociados']) ? $_POST['incluir_planteles_asociados'] : 'not set') . "\n", FILE_APPEND);
+		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - incluir_planteles_asociados FINAL: ' . ($incluir_planteles_asociados ? 'true' : 'false') . "\n", FILE_APPEND);
 			
 			// Obtener todas las columnas de la tabla cita
 			$queryColumnas = "SHOW COLUMNS FROM cita";
@@ -48,14 +58,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// Construir la consulta base
 			$whereConditions = ['c.eli_cit = 1'];
 			
+			// Manejar filtros de fecha
 			if ($fecha_filtro) {
+				// Filtro por fecha específica (compatibilidad con código anterior)
 				$whereConditions[] = "c.cit_cit = '$fecha_filtro'";
+			} elseif ($fecha_inicio || $fecha_fin) {
+				// Filtro por rango de fechas
+				if ($fecha_inicio && $fecha_fin) {
+					$whereConditions[] = "c.cit_cit >= '$fecha_inicio' AND c.cit_cit <= '$fecha_fin'";
+				} elseif ($fecha_inicio) {
+					$whereConditions[] = "c.cit_cit >= '$fecha_inicio'";
+				} elseif ($fecha_fin) {
+					$whereConditions[] = "c.cit_cit <= '$fecha_fin'";
+				}
 			}
-			
-			// Si se especifica un ejecutivo y se incluyen planteles asociados
-			if ($id_ejecutivo && $incluir_planteles_asociados) {
+					// Manejo de filtro por ejecutivo
+		if ($id_ejecutivo) {
+			if ($incluir_planteles_asociados) {
 				// Obtener todos los ejecutivos accesibles para este ejecutivo
-				$ejecutivosAccesibles = obtenerEjecutivosAccesibles($id_ejecutivo, $connection);
+				$ejecutivosAccesibles = obtenerEjecutivosAccesibles($id_ejecutivo, $connection, true);
+				
+				file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - Ejecutivos accesibles: ' . implode(',', $ejecutivosAccesibles) . "\n", FILE_APPEND);
 				
 				if (!empty($ejecutivosAccesibles)) {
 					$ejecutivosIds = implode(',', $ejecutivosAccesibles);
@@ -64,36 +87,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					// Si no hay ejecutivos accesibles, solo mostrar propias
 					$whereConditions[] = "c.id_eje2 = $id_ejecutivo";
 				}
-			} elseif ($id_ejecutivo) {
-				// Solo filtrar por el ejecutivo especificado
+			} else {
+				// Solo filtrar por el ejecutivo especificado (citas propias únicamente)
 				$whereConditions[] = "c.id_eje2 = $id_ejecutivo";
+				file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - Solo citas propias del ejecutivo: ' . $id_ejecutivo . "\n", FILE_APPEND);
 			}
-			
-			$whereClause = implode(' AND ', $whereConditions);
-			
-			if ($fecha_filtro) {
-				// Filtro por fecha específica
-				$query = "SELECT $selectFields 
-						 FROM cita c
-						 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
-						 WHERE $whereClause
-						 ORDER BY c.hor_cit ASC";
-			} else {
-				// Todas las citas para búsqueda
-				$query = "SELECT $selectFields 
-						 FROM cita c
-						 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
-						 WHERE $whereClause
-						 ORDER BY c.cit_cit DESC, c.hor_cit ASC";
-			}
+		}
+					$whereClause = implode(' AND ', $whereConditions);
+		
+		// Log para debugging
+		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - WHERE clause: ' . $whereClause . "\n", FILE_APPEND);
+		
+		if ($fecha_filtro || $fecha_inicio || $fecha_fin) {
+			// Filtro por fecha específica o rango
+			$query = "SELECT $selectFields 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE $whereClause
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC";
+		} else {
+			// Todas las citas para búsqueda
+			$query = "SELECT $selectFields 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE $whereClause
+					 ORDER BY c.cit_cit DESC, c.hor_cit ASC";
+		}
+		
+		// Log para debugging
+		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - Query final: ' . $query . "\n", FILE_APPEND);
 
-			$datos = ejecutarConsulta($query, $connection);
+		$datos = ejecutarConsulta($query, $connection);
 
-			if($datos !== false) {
-				echo respuestaExito($datos, 'Citas obtenidas correctamente');
-			} else {
-				echo respuestaError('Error al consultar citas: ' . mysqli_error($connection) . ' Query: ' . $query);
-			}
+		if($datos !== false) {
+			file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - Citas encontradas: ' . count($datos) . "\n", FILE_APPEND);
+			echo respuestaExito($datos, 'Citas obtenidas correctamente');
+		} else {
+			echo respuestaError('Error al consultar citas: ' . mysqli_error($connection) . ' Query: ' . $query);
+		}
 		break;
 
 		case 'obtener_ejecutivos':
@@ -451,24 +482,37 @@ function obtenerHistorialCita($connection, $id_cit) {
 // FUNCIONES DE PLANTELES ASOCIADOS
 // =====================================
 
-function obtenerEjecutivosAccesibles($id_ejecutivo, $connection) {
+function obtenerEjecutivosAccesibles($id_ejecutivo, $connection, $incluir_planteles = false) {
 	$ejecutivosAccesibles = [];
 	
-	// 1. Incluir al ejecutivo principal
+	// Log para debugging
+	file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] obtenerEjecutivosAccesibles - id_ejecutivo: ' . $id_ejecutivo . ', incluir_planteles: ' . ($incluir_planteles ? 'true' : 'false') . "\n", FILE_APPEND);
+	
+	// 1. Incluir al ejecutivo principal siempre
 	$ejecutivosAccesibles[] = $id_ejecutivo;
 	
-	// 2. Obtener ejecutivos de su árbol (hijos recursivos)
-	$hijosArbol = obtenerHijosRecursivos($id_ejecutivo, $connection);
-	$ejecutivosAccesibles = array_merge($ejecutivosAccesibles, $hijosArbol);
+	// 2. Si se incluyen planteles asociados, obtener ejecutivos adicionales
+	if ($incluir_planteles) {
+		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - Obteniendo hijos recursivos...' . "\n", FILE_APPEND);
+		
+		// Obtener hijos recursivos del ejecutivo
+		$hijosArbol = obtenerHijosRecursivos($id_ejecutivo, $connection);
+		$ejecutivosAccesibles = array_merge($ejecutivosAccesibles, $hijosArbol);
+		
+		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - Hijos recursivos: ' . implode(',', $hijosArbol) . "\n", FILE_APPEND);
+		
+		// Obtener ejecutivos de planteles asociados
+		$ejecutivosPlanteles = obtenerEjecutivosPlanteles($id_ejecutivo, $connection);
+		$ejecutivosAccesibles = array_merge($ejecutivosAccesibles, $ejecutivosPlanteles);
+		
+		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - Ejecutivos de planteles: ' . implode(',', $ejecutivosPlanteles) . "\n", FILE_APPEND);
+	}
 	
-	// 3. Obtener ejecutivos de planteles asociados
-	$ejecutivosPlanteles = obtenerEjecutivosPlanteles($id_ejecutivo, $connection);
-	$ejecutivosAccesibles = array_merge($ejecutivosAccesibles, $ejecutivosPlanteles);
+	// Eliminar duplicados y retornar
+	$resultado = array_unique($ejecutivosAccesibles);
+	file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - Resultado final: ' . implode(',', $resultado) . "\n", FILE_APPEND);
 	
-	// Eliminar duplicados
-	$ejecutivosAccesibles = array_unique($ejecutivosAccesibles);
-	
-	return $ejecutivosAccesibles;
+	return $resultado;
 }
 
 function obtenerHijosRecursivos($id_ejecutivo, $connection, $visitados = []) {

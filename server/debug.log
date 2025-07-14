@@ -1,116 +1,988 @@
-[2025-07-11 20:42:09] REQUEST recibido: Array
+[2025-07-11 21:30:18] REQUEST recibido: Array
 (
     [action] => obtener_estructura_tabla
 )
 
-[2025-07-11 20:42:09] REQUEST recibido: Array
+[2025-07-11 21:30:18] REQUEST recibido: Array
 (
     [action] => obtener_ejecutivos
 )
 
-[2025-07-11 20:42:09] REQUEST recibido: Array
+[2025-07-11 21:30:18] REQUEST recibido: Array
 (
     [action] => obtener_citas
     [fecha_filtro] => 2025-07-11
 )
 
-[2025-07-11 20:42:20] REQUEST recibido: Array
+[2025-07-11 21:30:25] REQUEST recibido: Array
 (
     [action] => obtener_estructura_tabla
 )
 
-[2025-07-11 20:42:20] REQUEST recibido: Array
+[2025-07-11 21:30:25] REQUEST recibido: Array
 (
     [action] => obtener_ejecutivos
 )
 
-[2025-07-11 20:42:20] REQUEST recibido: Array
+[2025-07-11 21:30:25] REQUEST recibido: Array
 (
     [action] => obtener_citas
     [fecha_filtro] => 2025-07-11
 )
 
-[2025-07-11 20:42:23] REQUEST recibido: Array
-(
-    [action] => obtener_citas
-    [fecha_filtro] => 2025-07-11
-)
-
-[2025-07-11 20:42:27] REQUEST recibido: Array
-(
-    [action] => obtener_citas
-    [fecha_filtro] => 2025-07-14
-)
-
-[2025-07-11 20:42:31] REQUEST recibido: Array
-(
-    [action] => obtener_estructura_tabla
-)
-
-[2025-07-11 20:42:31] REQUEST recibido: Array
-(
-    [action] => obtener_ejecutivos
-)
-
-[2025-07-11 20:42:31] REQUEST recibido: Array
-(
-    [action] => obtener_citas
-    [fecha_filtro] => 2025-07-11
-)
-
-[2025-07-11 20:43:16] REQUEST recibido: Array
-(
-    [action] => obtener_estructura_tabla
-)
-
-[2025-07-11 20:43:16] REQUEST recibido: Array
-(
-    [action] => obtener_ejecutivos
-)
-
-[2025-07-11 20:43:16] REQUEST recibido: Array
-(
-    [action] => obtener_citas
-    [fecha_filtro] => 2025-07-11
-)
-
-[2025-07-11 20:43:24] REQUEST recibido: Array
-(
-    [action] => obtener_citas
-    [fecha_filtro] => 2025-07-14
-)
-
-[2025-07-11 20:43:34] REQUEST recibido: Array
-(
-    [action] => obtener_citas
-)
-
-[2025-07-11 20:43:44] REQUEST recibido: Array
-(
-    [action] => obtener_citas
-)
-
-[2025-07-11 20:43:48] REQUEST recibido: Array
-(
-    [action] => obtener_citas
-    [fecha_filtro] => 2025-07-14
-)
-
-[2025-07-11 20:43:56] REQUEST recibido: Array
+[2025-07-11 21:30:27] REQUEST recibido: Array
 (
     [action] => obtener_citas
     [fecha_filtro] => 
 )
 
-[2025-07-11 20:43:57] REQUEST recibido: Array
+[2025-07-11 21:30:31] REQUEST recibido: Array
 (
-    [action] => obtener_citas
-    [fecha_filtro] => 
+    [action] => obtener_estructura_tabla
 )
 
-[2025-07-11 20:44:13] REQUEST recibido: Array
+[2025-07-11 21:30:31] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-11 21:30:31] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-11
+)
+
+[2025-07-11 21:30:39] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-11 21:30:39] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-11 21:30:39] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-11
+)
+
+[2025-07-11 21:30:52] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-11 21:30:52] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-11 21:30:52] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-11
+)
+
+[2025-07-11 21:30:57] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-11
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-11 21:31:02] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-13
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-11 21:31:08] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-13
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-11 21:31:38] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-11 21:31:38] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-11 21:31:38] REQUEST recibido: Array
 (
     [action] => obtener_citas
     [fecha_filtro] => 2025-07-13
 )
 
+[2025-07-11 21:36:48] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-11 21:36:48] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-11 21:36:48] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-11
+)
+
+[2025-07-11 21:36:58] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-13
+)
+
+[2025-07-11 21:37:13] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-11 21:37:13] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-11 21:37:13] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-13
+)
+
+[2025-07-11 21:37:21] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-11 21:37:21] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-11 21:37:21] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-11
+)
+
+[2025-07-11 21:37:34] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-11 21:37:34] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-11 21:37:34] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-11
+)
+
+[2025-07-14 18:36:30] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-14 18:36:30] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-14 18:36:30] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-14
+)
+
+[2025-07-14 18:46:49] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-14 18:46:49] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-14 18:46:49] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 18:47:46] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-15
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:47:55] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-15
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-14 18:47:57] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-15
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:48:02] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-15
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:48:03] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-15
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:48:04] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-15
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:48:05] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 18:48:05] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 18:48:05] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 18:48:10] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 18:48:11] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 18:48:20] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+)
+
+[2025-07-14 18:48:33] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-11
+    [fecha_fin] => 2025-07-15
+    [id_ejecutivo] => 9
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:48:38] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-11
+    [fecha_fin] => 2025-07-15
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:49:08] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-14 18:49:08] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-14 18:49:08] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 18:49:12] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:52:16] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-06-14
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:52:18] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-06-14
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:52:19] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:52:19] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-01
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:52:20] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-14
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:52:20] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-14
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:52:21] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-14
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:52:22] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-14
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:57:14] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-14 18:57:14] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-14 18:57:14] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 18:57:14] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 18:57:14] - fecha_inicio: 2025-07-07
+[2025-07-14 18:57:14] - fecha_fin: 2025-07-14
+[2025-07-14 18:57:14] - id_ejecutivo: null
+[2025-07-14 18:57:14] - incluir_planteles_asociados: false
+[2025-07-14 18:57:14] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14'
+[2025-07-14 18:57:14] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14'
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 18:57:14] - Citas encontradas: 70
+[2025-07-14 18:57:19] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:57:19] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 18:57:19] - fecha_inicio: 2025-07-07
+[2025-07-14 18:57:19] - fecha_fin: 2025-07-14
+[2025-07-14 18:57:19] - id_ejecutivo: 4
+[2025-07-14 18:57:19] - incluir_planteles_asociados: true
+[2025-07-14 18:57:19] - Ejecutivos accesibles: 4,6,20,21,11,15,2,9,16
+[2025-07-14 18:57:19] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,20,21,11,15,2,9,16)
+[2025-07-14 18:57:19] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,20,21,11,15,2,9,16)
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 18:57:19] - Citas encontradas: 45
+[2025-07-14 18:57:23] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-14 18:57:23] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 18:57:23] - fecha_inicio: 2025-07-07
+[2025-07-14 18:57:23] - fecha_fin: 2025-07-14
+[2025-07-14 18:57:23] - id_ejecutivo: 4
+[2025-07-14 18:57:23] - incluir_planteles_asociados: true
+[2025-07-14 18:57:23] - Ejecutivos accesibles: 4,6,20,21,11,15,2,9,16
+[2025-07-14 18:57:23] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,20,21,11,15,2,9,16)
+[2025-07-14 18:57:23] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,20,21,11,15,2,9,16)
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 18:57:23] - Citas encontradas: 45
+[2025-07-14 18:57:26] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:57:26] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 18:57:26] - fecha_inicio: 2025-07-07
+[2025-07-14 18:57:26] - fecha_fin: 2025-07-14
+[2025-07-14 18:57:26] - id_ejecutivo: 4
+[2025-07-14 18:57:26] - incluir_planteles_asociados: true
+[2025-07-14 18:57:26] - Ejecutivos accesibles: 4,6,20,21,11,15,2,9,16
+[2025-07-14 18:57:26] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,20,21,11,15,2,9,16)
+[2025-07-14 18:57:26] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,20,21,11,15,2,9,16)
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 18:57:26] - Citas encontradas: 45
+[2025-07-14 18:58:01] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-14 18:58:01] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 18:58:01] - fecha_inicio: 2025-07-07
+[2025-07-14 18:58:01] - fecha_fin: 2025-07-14
+[2025-07-14 18:58:01] - id_ejecutivo: 4
+[2025-07-14 18:58:01] - incluir_planteles_asociados: true
+[2025-07-14 18:58:01] - Ejecutivos accesibles: 4,6,20,21,11,15,2,9,16
+[2025-07-14 18:58:01] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,20,21,11,15,2,9,16)
+[2025-07-14 18:58:01] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,20,21,11,15,2,9,16)
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 18:58:01] - Citas encontradas: 45
+[2025-07-14 18:58:07] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:58:07] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 18:58:07] - fecha_inicio: 2025-07-07
+[2025-07-14 18:58:07] - fecha_fin: 2025-07-14
+[2025-07-14 18:58:07] - id_ejecutivo: 4
+[2025-07-14 18:58:07] - incluir_planteles_asociados: true
+[2025-07-14 18:58:08] - Ejecutivos accesibles: 4,6,20,21,11,15,2,9,16
+[2025-07-14 18:58:08] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,20,21,11,15,2,9,16)
+[2025-07-14 18:58:08] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,20,21,11,15,2,9,16)
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 18:58:08] - Citas encontradas: 45
+[2025-07-14 18:59:01] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-14 18:59:01] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-14 18:59:01] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 18:59:01] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 18:59:01] - fecha_inicio: 2025-07-07
+[2025-07-14 18:59:01] - fecha_fin: 2025-07-14
+[2025-07-14 18:59:01] - id_ejecutivo: null
+[2025-07-14 18:59:01] - incluir_planteles_asociados: false
+[2025-07-14 18:59:01] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14'
+[2025-07-14 18:59:01] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14'
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 18:59:01] - Citas encontradas: 70
+[2025-07-14 18:59:04] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 18:59:04] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 18:59:04] - fecha_inicio: 2025-07-07
+[2025-07-14 18:59:04] - fecha_fin: 2025-07-14
+[2025-07-14 18:59:04] - id_ejecutivo: 4
+[2025-07-14 18:59:04] - incluir_planteles_asociados: true
+[2025-07-14 18:59:04] - Ejecutivos accesibles: 4,6,11,15,20,21,2,9,16
+[2025-07-14 18:59:04] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,11,15,20,21,2,9,16)
+[2025-07-14 18:59:04] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,11,15,20,21,2,9,16)
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 18:59:04] - Citas encontradas: 45
+[2025-07-14 18:59:09] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-14 18:59:09] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 18:59:09] - fecha_inicio: 2025-07-07
+[2025-07-14 18:59:09] - fecha_fin: 2025-07-14
+[2025-07-14 18:59:09] - id_ejecutivo: 4
+[2025-07-14 18:59:09] - incluir_planteles_asociados: true
+[2025-07-14 18:59:09] - Ejecutivos accesibles: 4,6,11,15,20,21,2,9,16
+[2025-07-14 18:59:09] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,11,15,20,21,2,9,16)
+[2025-07-14 18:59:09] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,11,15,20,21,2,9,16)
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 18:59:09] - Citas encontradas: 45
+[2025-07-14 19:02:53] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-14 19:02:53] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-14 19:02:53] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 19:02:53] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:02:53] - fecha_inicio: 2025-07-07
+[2025-07-14 19:02:53] - fecha_fin: 2025-07-14
+[2025-07-14 19:02:53] - id_ejecutivo: null
+[2025-07-14 19:02:53] - incluir_planteles_asociados RAW: not set
+[2025-07-14 19:02:53] - incluir_planteles_asociados FINAL: false
+[2025-07-14 19:02:53] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14'
+[2025-07-14 19:02:53] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14'
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:02:53] - Citas encontradas: 70
+[2025-07-14 19:02:57] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 19:02:57] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:02:57] - fecha_inicio: 2025-07-07
+[2025-07-14 19:02:57] - fecha_fin: 2025-07-14
+[2025-07-14 19:02:57] - id_ejecutivo: 4
+[2025-07-14 19:02:57] - incluir_planteles_asociados RAW: false
+[2025-07-14 19:02:57] - incluir_planteles_asociados FINAL: false
+[2025-07-14 19:02:57] - Solo citas propias del ejecutivo: 4
+[2025-07-14 19:02:57] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 4
+[2025-07-14 19:02:57] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 4
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:02:57] - Citas encontradas: 6
+[2025-07-14 19:03:05] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 6
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 19:03:05] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:03:05] - fecha_inicio: 2025-07-07
+[2025-07-14 19:03:05] - fecha_fin: 2025-07-14
+[2025-07-14 19:03:05] - id_ejecutivo: 6
+[2025-07-14 19:03:05] - incluir_planteles_asociados RAW: false
+[2025-07-14 19:03:05] - incluir_planteles_asociados FINAL: false
+[2025-07-14 19:03:05] - Solo citas propias del ejecutivo: 6
+[2025-07-14 19:03:05] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 6
+[2025-07-14 19:03:05] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 6
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:03:05] - Citas encontradas: 4
+[2025-07-14 19:03:16] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-13
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 6
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 19:03:16] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:03:16] - fecha_inicio: 2025-07-13
+[2025-07-14 19:03:16] - fecha_fin: 2025-07-14
+[2025-07-14 19:03:16] - id_ejecutivo: 6
+[2025-07-14 19:03:16] - incluir_planteles_asociados RAW: false
+[2025-07-14 19:03:16] - incluir_planteles_asociados FINAL: false
+[2025-07-14 19:03:16] - Solo citas propias del ejecutivo: 6
+[2025-07-14 19:03:16] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-13' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 6
+[2025-07-14 19:03:16] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-13' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 6
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:03:16] - Citas encontradas: 3
+[2025-07-14 19:04:00] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-14 19:04:00] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-14 19:04:00] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 19:04:00] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:04:00] - fecha_inicio: 2025-07-07
+[2025-07-14 19:04:00] - fecha_fin: 2025-07-14
+[2025-07-14 19:04:00] - id_ejecutivo: null
+[2025-07-14 19:04:00] - incluir_planteles_asociados RAW: not set
+[2025-07-14 19:04:00] - incluir_planteles_asociados FINAL: false
+[2025-07-14 19:04:00] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14'
+[2025-07-14 19:04:00] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14'
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:04:00] - Citas encontradas: 70
+[2025-07-14 19:04:04] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 19:04:04] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:04:04] - fecha_inicio: 2025-07-07
+[2025-07-14 19:04:04] - fecha_fin: 2025-07-14
+[2025-07-14 19:04:04] - id_ejecutivo: 4
+[2025-07-14 19:04:04] - incluir_planteles_asociados RAW: false
+[2025-07-14 19:04:04] - incluir_planteles_asociados FINAL: false
+[2025-07-14 19:04:04] - Solo citas propias del ejecutivo: 4
+[2025-07-14 19:04:04] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 4
+[2025-07-14 19:04:04] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 4
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:04:04] - Citas encontradas: 6
+[2025-07-14 19:04:11] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-14 19:04:11] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:04:11] - fecha_inicio: 2025-07-07
+[2025-07-14 19:04:11] - fecha_fin: 2025-07-14
+[2025-07-14 19:04:11] - id_ejecutivo: 4
+[2025-07-14 19:04:11] - incluir_planteles_asociados RAW: true
+[2025-07-14 19:04:11] - incluir_planteles_asociados FINAL: true
+[2025-07-14 19:04:11] obtenerEjecutivosAccesibles - id_ejecutivo: 4, incluir_planteles: true
+[2025-07-14 19:04:11] - Obteniendo hijos recursivos...
+[2025-07-14 19:04:11] - Hijos recursivos: 6
+[2025-07-14 19:04:11] - Ejecutivos de planteles: 4,6,6,11,15,20,21,20,21,2,9,16
+[2025-07-14 19:04:11] - Resultado final: 4,6,11,15,20,21,2,9,16
+[2025-07-14 19:04:11] - Ejecutivos accesibles: 4,6,11,15,20,21,2,9,16
+[2025-07-14 19:04:11] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,11,15,20,21,2,9,16)
+[2025-07-14 19:04:11] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,11,15,20,21,2,9,16)
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:04:11] - Citas encontradas: 45
+[2025-07-14 19:06:32] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 19:06:32] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:06:32] - fecha_inicio: 2025-07-07
+[2025-07-14 19:06:32] - fecha_fin: 2025-07-14
+[2025-07-14 19:06:32] - id_ejecutivo: 4
+[2025-07-14 19:06:32] - incluir_planteles_asociados RAW: false
+[2025-07-14 19:06:32] - incluir_planteles_asociados FINAL: false
+[2025-07-14 19:06:32] - Solo citas propias del ejecutivo: 4
+[2025-07-14 19:06:32] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 4
+[2025-07-14 19:06:32] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 4
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:06:32] - Citas encontradas: 6
+[2025-07-14 19:08:03] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-14 19:08:03] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-14 19:08:03] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 19:08:03] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:08:03] - fecha_inicio: 2025-07-07
+[2025-07-14 19:08:03] - fecha_fin: 2025-07-14
+[2025-07-14 19:08:03] - id_ejecutivo: null
+[2025-07-14 19:08:03] - incluir_planteles_asociados RAW: not set
+[2025-07-14 19:08:03] - incluir_planteles_asociados FINAL: false
+[2025-07-14 19:08:03] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14'
+[2025-07-14 19:08:03] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14'
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:08:03] - Citas encontradas: 70
+[2025-07-14 19:08:27] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 19:08:27] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:08:27] - fecha_inicio: 2025-07-07
+[2025-07-14 19:08:27] - fecha_fin: 2025-07-14
+[2025-07-14 19:08:27] - id_ejecutivo: 4
+[2025-07-14 19:08:27] - incluir_planteles_asociados RAW: false
+[2025-07-14 19:08:27] - incluir_planteles_asociados FINAL: false
+[2025-07-14 19:08:27] - Solo citas propias del ejecutivo: 4
+[2025-07-14 19:08:27] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 4
+[2025-07-14 19:08:27] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 4
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:08:27] - Citas encontradas: 6
+[2025-07-14 19:08:29] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-14 19:08:29] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:08:29] - fecha_inicio: 2025-07-07
+[2025-07-14 19:08:29] - fecha_fin: 2025-07-14
+[2025-07-14 19:08:29] - id_ejecutivo: 4
+[2025-07-14 19:08:29] - incluir_planteles_asociados RAW: true
+[2025-07-14 19:08:29] - incluir_planteles_asociados FINAL: true
+[2025-07-14 19:08:29] obtenerEjecutivosAccesibles - id_ejecutivo: 4, incluir_planteles: true
+[2025-07-14 19:08:29] - Obteniendo hijos recursivos...
+[2025-07-14 19:08:29] - Hijos recursivos: 6
+[2025-07-14 19:08:29] - Ejecutivos de planteles: 4,6,6,11,15,20,21,20,21,2,9,16
+[2025-07-14 19:08:29] - Resultado final: 4,6,11,15,20,21,2,9,16
+[2025-07-14 19:08:29] - Ejecutivos accesibles: 4,6,11,15,20,21,2,9,16
+[2025-07-14 19:08:29] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,11,15,20,21,2,9,16)
+[2025-07-14 19:08:29] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 IN (4,6,11,15,20,21,2,9,16)
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:08:29] - Citas encontradas: 45
+[2025-07-14 19:08:32] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-14 19:08:32] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:08:32] - fecha_inicio: 2025-07-07
+[2025-07-14 19:08:32] - fecha_fin: 2025-07-14
+[2025-07-14 19:08:32] - id_ejecutivo: 4
+[2025-07-14 19:08:32] - incluir_planteles_asociados RAW: false
+[2025-07-14 19:08:32] - incluir_planteles_asociados FINAL: false
+[2025-07-14 19:08:32] - Solo citas propias del ejecutivo: 4
+[2025-07-14 19:08:32] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 4
+[2025-07-14 19:08:32] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14' AND c.id_eje2 = 4
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:08:32] - Citas encontradas: 6
+[2025-07-14 19:12:38] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-14 19:12:38] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-14 19:12:38] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_inicio] => 2025-07-07
+    [fecha_fin] => 2025-07-14
+)
+
+[2025-07-14 19:12:38] FILTRO CITAS - Parámetros recibidos:
+[2025-07-14 19:12:38] - fecha_inicio: 2025-07-07
+[2025-07-14 19:12:38] - fecha_fin: 2025-07-14
+[2025-07-14 19:12:38] - id_ejecutivo: null
+[2025-07-14 19:12:38] - incluir_planteles_asociados RAW: not set
+[2025-07-14 19:12:38] - incluir_planteles_asociados FINAL: false
+[2025-07-14 19:12:38] - WHERE clause: c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14'
+[2025-07-14 19:12:38] - Query final: SELECT c.id_cit, c.cit_cit, c.hor_cit, c.nom_cit, c.tel_cit, c.id_eje2, c.eli_cit, e.nom_eje 
+					 FROM cita c
+					 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
+					 WHERE c.eli_cit = 1 AND c.cit_cit >= '2025-07-07' AND c.cit_cit <= '2025-07-14'
+					 ORDER BY c.cit_cit ASC, c.hor_cit ASC
+[2025-07-14 19:12:38] - Citas encontradas: 70

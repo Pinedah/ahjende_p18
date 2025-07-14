@@ -864,8 +864,10 @@
                     <div class="col-md-4">
                         <div class="plantel-container" data-plantel-id="${plantel.id_pla}">
                             <div class="plantel-header">
-                                <i class="fas fa-building"></i> ${plantel.nom_pla} 
-                                <div class="badge badge-light" id="count-plantel-${plantel.id_pla}">${ejecutivosPlantel.length}</div>
+                                <i class="fas fa-building"></i> ${plantel.nom_pla}
+                                <div class="badge badge-light" id="count-plantel-${plantel.id_pla}">
+                                    ${ejecutivosPlantel.length}
+                                </div>
                                 <span class="badge badge-citas-plantel ml-2" id="badge-citas-plantel-${plantel.id_pla}" onclick="verDetallesCitasPlantel(${plantel.id_pla})" title="Cargando citas..." style="display: none;">0</span>
                             </div>
                             <div class="plantel-tree" id="jstree-plantel-${plantel.id_pla}"></div>
@@ -910,7 +912,7 @@
                             var badgeElement = $('#badge-citas-plantel-' + plantel.id_pla);
                             
                             if(totalCitas > 0) {
-                                badgeElement.text(totalCitas + (totalCitas >= 2 ? ' citas' : ' cita'))
+                                badgeElement.text(totalCitas + (totalCitas >= 2 ? ' citas totales' : ' cita total'))
                                 .attr('title', 'Citas totales del plantel: ' + totalCitas)
                                 .show();
                             } else {
@@ -933,25 +935,17 @@
             console.log('Ejecutivos disponibles:', ejecutivos.length);
             
             planteles.forEach(function(plantel) {
-                console.log('Procesando plantel:', plantel.nom_pla, '(ID:', plantel.id_pla, ')');
+                //console.log('Procesando plantel:', plantel.nom_pla, '(ID:', plantel.id_pla, ')');
                 
                 var ejecutivosPlantel = ejecutivos.filter(ej => ej.id_pla == plantel.id_pla);
-                console.log('Ejecutivos en plantel', plantel.id_pla, ':', ejecutivosPlantel.length);
-                
-                // Debug: listar ejecutivos
-                ejecutivosPlantel.forEach(function(ej) {
-                    console.log('  -', ej.nom_eje, '(ID:', ej.id_eje, ', Padre:', ej.id_padre || 'NULL', ')');
-                });
                 
                 var nodosTree = generarNodosJsTree(ejecutivosPlantel);
-                console.log('Nodos jsTree generados:', nodosTree.length);
                 
                 // Actualizar contador
                 $('#count-plantel-' + plantel.id_pla).text(ejecutivosPlantel.length);
                 
                 // Generar árbol
                 var treeId = '#jstree-plantel-' + plantel.id_pla;
-                console.log('Inicializando jsTree en:', treeId);
                 
                 // Verificar que el elemento existe
                 if($(treeId).length === 0) {
