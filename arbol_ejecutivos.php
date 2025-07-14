@@ -699,9 +699,37 @@
         
         // Inicialización
         $(document).ready(function() {
+            aplicarFiltrosDesdeURL();
             cargarEjecutivos();
             configurarEventos();
         });
+        
+        function aplicarFiltrosDesdeURL() {
+            // Obtener parámetros de la URL
+            var params = obtenerParametrosURL();
+            
+            // Aplicar filtros de fecha si existen
+            if (params.fechaInicio) {
+                $('#fechaInicio').val(params.fechaInicio);
+            }
+            if (params.fechaFin) {
+                $('#fechaFin').val(params.fechaFin);
+            }
+        }
+        
+        function obtenerParametrosURL() {
+            var params = {};
+            var queryString = window.location.search.substring(1);
+            var vars = queryString.split('&');
+            
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split('=');
+                if (pair.length === 2) {
+                    params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+                }
+            }
+            return params;
+        }
         
         // =====================================
         // FUNCIONES DE CARGA DE DATOS
@@ -1196,8 +1224,11 @@
             
             // Agregar parámetro para indicar el tipo de conteo
             url += '&tipo_conteo=' + tipo;
+            url += '&origen=ejecutivos';
             
+            console.log('Navegando a:', url);
             window.location.href = url;
+        }
         }
         
         // =====================================

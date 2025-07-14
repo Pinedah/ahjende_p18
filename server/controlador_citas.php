@@ -29,7 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$fecha_filtro = isset($_POST['fecha_filtro']) ? escape($_POST['fecha_filtro'], $connection) : null;
 			$fecha_inicio = isset($_POST['fecha_inicio']) ? escape($_POST['fecha_inicio'], $connection) : null;
 			$fecha_fin = isset($_POST['fecha_fin']) ? escape($_POST['fecha_fin'], $connection) : null;
-			$id_ejecutivo = isset($_POST['id_ejecutivo']) ? intval($_POST['id_ejecutivo']) : null;		$incluir_planteles_asociados = isset($_POST['incluir_planteles_asociados']) && 
+			$id_ejecutivo = isset($_POST['id_ejecutivo']) ? intval($_POST['id_ejecutivo']) : null;
+			$id_plantel = isset($_POST['id_plantel']) ? intval($_POST['id_plantel']) : null;
+			$incluir_planteles_asociados = isset($_POST['incluir_planteles_asociados']) && 
 										($_POST['incluir_planteles_asociados'] === 'true' || $_POST['incluir_planteles_asociados'] === true || $_POST['incluir_planteles_asociados'] === 1 || $_POST['incluir_planteles_asociados'] === '1');
 		
 		// Log para debugging
@@ -37,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - fecha_inicio: ' . ($fecha_inicio ?: 'null') . "\n", FILE_APPEND);
 		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - fecha_fin: ' . ($fecha_fin ?: 'null') . "\n", FILE_APPEND);
 		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - id_ejecutivo: ' . ($id_ejecutivo ?: 'null') . "\n", FILE_APPEND);
+		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - id_plantel: ' . ($id_plantel ?: 'null') . "\n", FILE_APPEND);
 		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - incluir_planteles_asociados RAW: ' . (isset($_POST['incluir_planteles_asociados']) ? $_POST['incluir_planteles_asociados'] : 'not set') . "\n", FILE_APPEND);
 		file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - incluir_planteles_asociados FINAL: ' . ($incluir_planteles_asociados ? 'true' : 'false') . "\n", FILE_APPEND);
 			
@@ -72,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					$whereConditions[] = "c.cit_cit <= '$fecha_fin'";
 				}
 			}
-					// Manejo de filtro por ejecutivo
+		// Manejo de filtro por ejecutivo
 		if ($id_ejecutivo) {
 			if ($incluir_planteles_asociados) {
 				// Obtener todos los ejecutivos accesibles para este ejecutivo
@@ -92,6 +95,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$whereConditions[] = "c.id_eje2 = $id_ejecutivo";
 				file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - Solo citas propias del ejecutivo: ' . $id_ejecutivo . "\n", FILE_APPEND);
 			}
+		}
+		
+		// Manejo de filtro por plantel
+		if ($id_plantel) {
+			// Filtrar por ejecutivos del plantel especificado
+			$whereConditions[] = "e.id_pla = $id_plantel";
+			file_put_contents('debug.log', '[' . date('Y-m-d H:i:s') . '] - Filtro por plantel: ' . $id_plantel . "\n", FILE_APPEND);
 		}
 					$whereClause = implode(' AND ', $whereConditions);
 		

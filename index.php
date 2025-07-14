@@ -126,6 +126,13 @@
                 <!-- Mensaje de navegación desde árbol de ejecutivos -->
                 <div id="mensajeNavegacion"></div>
                 
+                <!-- Botón de regreso (solo visible cuando se navega desde un árbol) -->
+                <div id="botonRegreso" style="display: none;" class="mb-3">
+                    <button class="btn btn-outline-primary" onclick="regresarAOrigen()">
+                        <i class="fas fa-arrow-left"></i> <span id="textoRegreso">Regresar</span>
+                    </button>
+                </div>
+                
                 <!-- Buscador de citas -->
                 <div class="search-section">
                     <div class="row">
@@ -151,6 +158,11 @@
                                 <i class="fas fa-sitemap"></i> Ejecutivos
                             </button>
                         </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button class="btn btn-outline-success" onclick="window.location.href='arbol_planteles.php'">
+                                <i class="fas fa-building"></i> Planteles
+                            </button>
+                        </div>
                     </div>
                 </div>
                 
@@ -165,10 +177,16 @@
                             <label for="fecha-fin-filtro"><strong>Fecha Fin:</strong></label>
                             <input type="date" id="fecha-fin-filtro" class="form-control" value="">
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="ejecutivo-filtro"><strong>Ejecutivo:</strong></label>
                             <select id="ejecutivo-filtro" class="form-control">
                                 <option value="">Todos los ejecutivos</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="plantel-filtro"><strong>Plantel:</strong></label>
+                            <select id="plantel-filtro" class="form-control">
+                                <option value="">Todos los planteles</option>
                             </select>
                         </div>
                         <div class="col-md-2">
@@ -180,7 +198,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-3 d-flex align-items-end">
+                        <div class="col-md-2 d-flex align-items-end">
                             <button class="btn btn-info mr-2" onclick="cargarCitas()">
                                 <i class="fas fa-filter"></i> Filtrar
                             </button>
@@ -339,12 +357,12 @@
             }).then(function() {
                 inicializarTabla();
                 cargarCitas();
+                // Aplicar filtros desde URL después de cargar todo
+                aplicarFiltrosDesdeURL();
             }).catch(function(error) {
                 console.error('Error en inicialización:', error);
                 alert('Error al inicializar la aplicación: ' + error);
             });
-            
-            aplicarFiltrosDesdeURL();
         });
         
         // Función para validar rango de fechas
@@ -451,7 +469,7 @@
                                 colEjecutivo.source = ejecutivosDropdown;
                             }
                             
-                            // Poblar el dropdown del filtro
+                            // Poblar el dropdown del filtro de ejecutivos
                             var selectEjecutivo = $('#ejecutivo-filtro');
                             selectEjecutivo.empty();
                             selectEjecutivo.append('<option value="">Todos los ejecutivos</option>');
@@ -462,13 +480,53 @@
                             });
                             
                             console.log('Ejecutivos cargados:', ejecutivos);
-                            resolve();
+                            
+                            // Cargar planteles para el filtro
+                            cargarPlanteles().then(function() {
+                                resolve();
+                            }).catch(function(error) {
+                                reject(error);
+                            });
                         } else {
                             reject('Error al cargar ejecutivos');
                         }
                     },
                     error: function() {
                         reject('Error de conexión');
+                    }
+                });
+            });
+        }
+        
+        function cargarPlanteles() {
+            return new Promise(function(resolve, reject) {
+                $.ajax({
+                    url: 'server/controlador_ejecutivos.php',
+                    type: 'POST',
+                    data: { action: 'obtener_planteles' },
+                    dataType: 'json',
+                    success: function(response) {
+                        if(response.success) {
+                            var planteles = response.data;
+                            
+                            // Poblar el dropdown del filtro de planteles
+                            var selectPlantel = $('#plantel-filtro');
+                            selectPlantel.empty();
+                            selectPlantel.append('<option value="">Todos los planteles</option>');
+                            
+                            planteles.forEach(function(plantel) {
+                                selectPlantel.append('<option value="' + plantel.id_pla + '">' + 
+                                    plantel.nom_pla + '</option>');
+                            });
+                            
+                            console.log('Planteles cargados:', planteles);
+                            resolve();
+                        } else {
+                            reject('Error al cargar planteles');
+                        }
+                    },
+                    error: function() {
+                        reject('Error de conexión al cargar planteles');
                     }
                 });
             });
@@ -1051,6 +1109,7 @@
             var fechaInicio = $('#fecha-inicio-filtro').val();
             var fechaFin = $('#fecha-fin-filtro').val();
             var idEjecutivo = $('#ejecutivo-filtro').val();
+            var idPlantel = $('#plantel-filtro').val();
             var incluirPlanteles = $('#planteles-asociados-filtro').is(':checked');
             
             var datos = { 
@@ -1070,10 +1129,15 @@
                 datos.incluir_planteles_asociados = incluirPlanteles ? 'true' : 'false';
             }
             
+            if (idPlantel) {
+                datos.id_plantel = idPlantel;
+            }
+            
             console.log('=== DEBUG CARGAR CITAS ===');
             console.log('Fecha inicio:', fechaInicio);
             console.log('Fecha fin:', fechaFin);
             console.log('ID Ejecutivo:', idEjecutivo);
+            console.log('ID Plantel:', idPlantel);
             console.log('Incluir planteles:', incluirPlanteles);
             console.log('Datos enviados:', datos);
             console.log('========================');
@@ -1108,6 +1172,7 @@
             var fechaInicio = $('#fecha-inicio-filtro').val();
             var fechaFin = $('#fecha-fin-filtro').val();
             var idEjecutivo = $('#ejecutivo-filtro').val();
+            var idPlantel = $('#plantel-filtro').val();
             var incluirPlanteles = $('#planteles-asociados-filtro').is(':checked');
             
             if (fechaInicio && fechaFin) {
@@ -1125,6 +1190,11 @@
                 if (incluirPlanteles) {
                     filtros.push('🕋 Incluyendo planteles asociados');
                 }
+            }
+            
+            if (idPlantel) {
+                var nombrePlantel = $('#plantel-filtro option:selected').text();
+                filtros.push('🏢 Plantel: ' + nombrePlantel);
             }
             
             if (filtros.length > 0) {
@@ -1233,7 +1303,11 @@
             $('#fecha-inicio-filtro').val(fechaInicio);
             $('#fecha-fin-filtro').val(fechaFin);
             $('#ejecutivo-filtro').val('');
+            $('#plantel-filtro').val('');
             $('#planteles-asociados-filtro').prop('checked', false);
+            
+            // Limpiar mensaje de navegación
+            $('#mensajeNavegacion').html('');
             
             // Ocultar información del filtro activo
             $('#info-filtro-activo').hide();
@@ -1463,31 +1537,143 @@
             return params;
         }
         
+        function regresarAOrigen() {
+            var params = obtenerParametrosURL();
+            var url = '';
+            
+            if (params.origen === 'ejecutivos') {
+                url = 'arbol_ejecutivos.php';
+            } else if (params.origen === 'plantel') {
+                url = 'arbol_planteles.php';
+            } else {
+                // Fallback al árbol de ejecutivos
+                url = 'arbol_ejecutivos.php';
+            }
+            
+            // Conservar los filtros de fecha para mantener la consistencia
+            var queryString = '';
+            if (params.fecha_inicio) {
+                queryString += (queryString ? '&' : '') + 'fechaInicio=' + params.fecha_inicio;
+            }
+            if (params.fecha_fin) {
+                queryString += (queryString ? '&' : '') + 'fechaFin=' + params.fecha_fin;
+            }
+            
+            if (queryString) {
+                url += '?' + queryString;
+            }
+            
+            window.location.href = url;
+        }
+        
         function aplicarFiltrosDesdeURL() {
             var params = obtenerParametrosURL();
+            
+            console.log('=== DEBUG APLICAR FILTROS URL ===');
+            console.log('Parámetros URL:', params);
             
             // Aplicar filtro de ejecutivo si existe
             if (params.ejecutivo) {
                 $('#ejecutivo-filtro').val(params.ejecutivo);
+                console.log('Ejecutivo seleccionado:', params.ejecutivo);
+            }
+            
+            // Aplicar filtro de plantel si existe
+            if (params.plantel) {
+                $('#plantel-filtro').val(params.plantel);
+                console.log('Plantel seleccionado:', params.plantel);
             }
             
             // Aplicar filtros de fecha si existen
             if (params.fecha_inicio) {
-                $('#fecha-filtro').val(params.fecha_inicio);
+                $('#fecha-inicio-filtro').val(params.fecha_inicio);
+                console.log('Fecha inicio:', params.fecha_inicio);
             }
             
             if (params.fecha_fin) {
-                // Crear campo de fecha fin si no existe
-                if ($('#fecha-fin-filtro').length === 0) {
-                    $('#fecha-filtro').after('<input type="date" id="fecha-fin-filtro" class="form-control ml-2" style="width: auto; display: inline-block;">');
-                }
                 $('#fecha-fin-filtro').val(params.fecha_fin);
+                console.log('Fecha fin:', params.fecha_fin);
             }
             
-            // Mostrar mensaje si viene del árbol de ejecutivos
-            if (params.tipo_conteo) {
-                var tipoMensaje = params.tipo_conteo === 'propias' ? 'propias' : 'recursivas (incluye descendientes)';
-                $('#mensajeNavegacion').html('<div class="alert alert-info">Mostrando citas ' + tipoMensaje + ' del ejecutivo seleccionado</div>');
+            // Manejar checkbox de planteles asociados según el tipo de conteo
+            if (params.tipo_conteo === 'propias') {
+                // Para citas propias, nunca incluir planteles asociados
+                $('#planteles-asociados-filtro').prop('checked', false);
+                console.log('Planteles asociados desactivado para citas propias');
+            } else if (params.tipo_conteo === 'recursivas') {
+                // Para citas recursivas, sí incluir planteles asociados
+                $('#planteles-asociados-filtro').prop('checked', true);
+                console.log('Planteles asociados activado para citas recursivas');
+            } else if (params.incluir_planteles === 'true') {
+                $('#planteles-asociados-filtro').prop('checked', true);
+                console.log('Planteles asociados activado');
+            } else {
+                $('#planteles-asociados-filtro').prop('checked', false);
+            }
+            
+            // Mostrar mensaje específico según el origen y tipo
+            if (params.origen === 'plantel' || params.origen === 'ejecutivos') {
+                var mensaje = '';
+                var fechaTexto = '';
+                
+                // Generar texto de fechas si existen
+                if (params.fecha_inicio && params.fecha_fin) {
+                    fechaTexto = ' del ' + params.fecha_inicio + ' al ' + params.fecha_fin;
+                } else if (params.fecha_inicio) {
+                    fechaTexto = ' desde ' + params.fecha_inicio;
+                } else if (params.fecha_fin) {
+                    fechaTexto = ' hasta ' + params.fecha_fin;
+                }
+                
+                if (params.ejecutivo) {
+                    if (params.tipo_conteo === 'propias') {
+                        mensaje = '<div class="alert alert-info alert-dismissible fade show" role="alert">' +
+                                '<i class="fas fa-user"></i> <strong>Navegación desde Árbol de Ejecutivos:</strong> ' +
+                                'Mostrando <strong>citas propias</strong> del ejecutivo seleccionado' + fechaTexto + '.' +
+                                '<button type="button" class="close" data-dismiss="alert">' +
+                                '<span aria-hidden="true">&times;</span></button></div>';
+                    } else if (params.tipo_conteo === 'recursivas') {
+                        mensaje = '<div class="alert alert-info alert-dismissible fade show" role="alert">' +
+                                '<i class="fas fa-users"></i> <strong>Navegación desde Árbol de Ejecutivos:</strong> ' +
+                                'Mostrando <strong>citas recursivas</strong> (incluye descendientes) del ejecutivo seleccionado' + fechaTexto + '.' +
+                                '<button type="button" class="close" data-dismiss="alert">' +
+                                '<span aria-hidden="true">&times;</span></button></div>';
+                    } else {
+                        mensaje = '<div class="alert alert-info alert-dismissible fade show" role="alert">' +
+                                '<i class="fas fa-user"></i> <strong>Navegación desde Árbol de Ejecutivos:</strong> ' +
+                                'Mostrando todas las citas del ejecutivo seleccionado' + fechaTexto + '.' +
+                                '<button type="button" class="close" data-dismiss="alert">' +
+                                '<span aria-hidden="true">&times;</span></button></div>';
+                    }
+                }
+                
+                if (params.plantel) {
+                    mensaje = '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+                            '<i class="fas fa-building"></i> <strong>Navegación desde Árbol de Planteles:</strong> ' +
+                            'Mostrando <strong>citas totales</strong> del plantel seleccionado' + fechaTexto + '.' +
+                            '<button type="button" class="close" data-dismiss="alert">' +
+                            '<span aria-hidden="true">&times;</span></button></div>';
+                }
+                
+                if (mensaje) {
+                    $('#mensajeNavegacion').html(mensaje);
+                }
+                
+                // Mostrar botón de regreso
+                if (params.origen === 'ejecutivos') {
+                    $('#textoRegreso').text('Regresar al Árbol de Ejecutivos');
+                    $('#botonRegreso').show();
+                } else if (params.origen === 'plantel') {
+                    $('#textoRegreso').text('Regresar al Árbol de Planteles');
+                    $('#botonRegreso').show();
+                }
+            }
+            
+            // Aplicar filtros automáticamente si se recibieron parámetros
+            if (params.ejecutivo || params.plantel || params.fecha_inicio) {
+                console.log('Aplicando filtros automáticamente...');
+                cargarCitas();
+                actualizarInfoFiltroActivo();
             }
         }
     </script>
